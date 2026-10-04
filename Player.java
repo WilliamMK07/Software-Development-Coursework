@@ -31,7 +31,7 @@ public class Player{
         return Returnstring;
 
     }
-    public synchronized Card removeCardFromHand(){
+    public synchronized Card(){
         for (int u =0; u <this.Hand.length; u++){
             this.Hand[u].increaseTurnsHeld();
         }
