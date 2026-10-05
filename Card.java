@@ -3,9 +3,12 @@ public class Card{
     private int Value;
     private int TurnsHeld;
 
-    public Card(int newvalue):
+    public Card(int newvalue){
+
+   
     this.Value = newvalue;
     this.TurnsHeld = 0;
+    }
 
     public synchronized int getValue(){
         return this.Value;
@@ -17,4 +20,9 @@ public class Card{
     public synchronized void increaseTurnsHeld(){
         this.TurnsHeld = this.TurnsHeld + 1;
     }
+    public synchronized void resetTurnsHeld(){
+        this.TurnsHeld = 0;
+
+    }
+
 }

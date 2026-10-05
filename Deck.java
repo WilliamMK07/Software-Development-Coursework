@@ -31,7 +31,7 @@ public class Deck {
             int Check = 0;
         }
         else {
-            int Check = Start+1
+            int Check = Start+1;
         }
         if (this.DeckQueue[Check] != null ){
             Start = Check;

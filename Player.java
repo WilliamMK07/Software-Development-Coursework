@@ -19,7 +19,11 @@ public class Player{
             if (this.Hand[i] == (null)){
                 this.Hand[i] = pickedupcard;
             }
+            else{
+                System.out.println("");
+            }
         }
+    }
     
     public synchronized String showCurrentPlayerHand(){
         String Returnstring = " ";
@@ -31,7 +35,7 @@ public class Player{
         return Returnstring;
 
     }
-    public synchronized Card(){
+    public synchronized Card CardToBeRemoved(){
         for (int u =0; u <this.Hand.length; u++){
             this.Hand[u].increaseTurnsHeld();
         }
@@ -39,18 +43,18 @@ public class Player{
         int currentCardToBeRemoved = 0;
         for (int y =0; y <this.Hand.length; y++){
             if (this.Hand[y].getValue != this.PlayerNum){
-                if (this.Hand[y].TurnsHeld > highestTurnsHeld){
-                    highestTurnsHeld = this.Hand[y].TurnsHeld;
+                if (this.Hand[y].getTurnsHeld() > highestTurnsHeld){
+                    highestTurnsHeld = this.Hand[y].getTurnsHeld();
                     currentCardToBeRemoved = y;
                 }
                 
             }
         }
-        this.Hand[currentCardToBeRemoved].TurnsHeld = 0;
+        this.Hand[currentCardToBeRemoved].resetTurnsHeld();
         rCard = this.Hand[currentCardToBeRemoved];
         this.Hand[currentCardToBeRemoved] = null;
         return rCard;
-    }
+    
 
     }
     
