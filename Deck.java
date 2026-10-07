@@ -42,7 +42,7 @@ public class Deck {
         return PassedCard;
     }
     public synchronized String printPlayerDeck(){
-        String Message = "deck"+this.Decknum+" contents:";
+        String Message = "deck"+this.DeckNum+" contents:";
         for (int i = 0;i<this.DeckLength ;i++){
             if ( this.DeckQueue[i] != null){
             Message = Message + " " + this.DeckQueue[i].getValue();

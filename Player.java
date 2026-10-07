@@ -42,7 +42,7 @@ public class Player{
         int highestTurnsHeld = 0;
         int currentCardToBeRemoved = 0;
         for (int y =0; y <this.Hand.length; y++){
-            if (this.Hand[y].getValue != this.PlayerNum){
+            if (this.Hand[y].getValue() != this.PlayerNum){
                 if (this.Hand[y].getTurnsHeld() > highestTurnsHeld){
                     highestTurnsHeld = this.Hand[y].getTurnsHeld();
                     currentCardToBeRemoved = y;
@@ -51,7 +51,7 @@ public class Player{
             }
         }
         this.Hand[currentCardToBeRemoved].resetTurnsHeld();
-        rCard = this.Hand[currentCardToBeRemoved];
+        Card rCard = this.Hand[currentCardToBeRemoved];
         this.Hand[currentCardToBeRemoved] = null;
         return rCard;
     
