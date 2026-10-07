@@ -27,11 +27,12 @@ public class Deck {
     public synchronized Card removeCardFromDeck(){
         Card PassedCard = this.DeckQueue[Start];
         this.DeckQueue[Start] = null;
+        int Check = 0;
         if (Start == (this.DeckLength-1)){
-            int Check = 0;
+            Check = 0;
         }
         else {
-            int Check = Start+1;
+             Check = Start+1;
         }
         if (this.DeckQueue[Check] != null ){
             Start = Check;
@@ -48,6 +49,7 @@ public class Deck {
             Message = Message + " " + this.DeckQueue[i].getValue();
             }
         }
+    return Message;
     } 
 
 }

@@ -18,6 +18,7 @@ public class Player{
         for(int i= 0; i <this.Hand.length; i++){
             if (this.Hand[i] == (null)){
                 this.Hand[i] = pickedupcard;
+                return;
             }
             else{
                 System.out.println("");
@@ -29,7 +30,9 @@ public class Player{
         String Returnstring = " ";
         Returnstring = "Player" + this.PlayerNum + "Current Hand";
         for (int x =0; x <this.Hand.length; x++){
-            Returnstring = Returnstring +" " + this.Hand[x].getValue;
+            if (this.Hand[x] != (null)){
+            Returnstring = Returnstring +" " + this.Hand[x].getValue();
+            }
         }
         
         return Returnstring;
