@@ -15,6 +15,7 @@ public class Player{
 
     }
     public synchronized void addCardToHand(Card pickedupcard){
+        //System.out.println("Im being ADded to " + pickedupcard.getValue());
         for(int i= 0; i <this.Hand.length; i++){
             if (this.Hand[i] == (null)){
                 this.Hand[i] = pickedupcard;
@@ -28,7 +29,7 @@ public class Player{
     
     public synchronized String showCurrentPlayerHand(){
         String Returnstring = " ";
-        Returnstring = "Player" + this.PlayerNum + "Current Hand";
+        Returnstring = "Player " + this.PlayerNum + " Current Hand" +"length: "+this.Hand[1];
         for (int x =0; x <this.Hand.length; x++){
             if (this.Hand[x] != (null)){
             Returnstring = Returnstring +" " + this.Hand[x].getValue();
