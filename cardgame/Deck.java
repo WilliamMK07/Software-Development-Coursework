@@ -14,6 +14,14 @@ public class Deck {
         this.Start = 0;
         this.End = 0;
     }
+    public synchronized boolean IsEmpty(){
+        if(this.End == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public synchronized void addCardToDeck(Card NewCard){
         this.DeckQueue[End] = NewCard;

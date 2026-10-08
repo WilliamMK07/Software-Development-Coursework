@@ -10,6 +10,7 @@ public class CardGame implements Runnable{
     private Card [] AllCards;
     private Player [] Players;
     private Deck [] Decks;
+    private Boolean Thread_won;
 
     public CardGame(int ChosenPlayerNum, File Cpackfile){
         this.TotalPlayersnum = ChosenPlayerNum;
@@ -17,6 +18,7 @@ public class CardGame implements Runnable{
         this.AllCards = new Card[8*ChosenPlayerNum];
         this.Players = new Player[ChosenPlayerNum];
         this.Decks = new Deck[ChosenPlayerNum];
+        this.Thread_won = false;
     }
     
     public boolean readcardpack(){
@@ -100,7 +102,7 @@ public class CardGame implements Runnable{
         // Add FIle writing for discard here
         Players[CurrentPlayerListLocation].addCardToHand(Decks[CurrentDeckListLocation].removeCardFromDeck());
         // Add file writing for adding to hand here
-        System.out.println("Hand: "+ Players[CurrentPlayerListLocation].showCurrentPlayerHand() +"DEck: "+Decks[CurrentDeckListLocation].printPlayerDeck());
+        System.out.println("Hand: "+ Players[CurrentPlayerListLocation].showCurrentPlayerHand() +"DEck: "+Decks[CurrentDeckListLocation].printPlayerDeck()+" Next Deck: "+Decks[NextDeckListLocation].printPlayerDeck());
         Players[CurrentPlayerListLocation].showCurrentPlayerHand();
         // Add file writing for Current Hand 
 
@@ -142,26 +144,67 @@ public static void main(String[] args) {
     Thread [] ThreadArray = new Thread[realTPlayersnum];
     for (int i = 0; i<realTPlayersnum;i++){
         ThreadArray[i] = new Thread(Current);
+        // ThreadArray[i].start();
+    }
+    for (int i = 0; i<realTPlayersnum;i++){
+        // ThreadArray[i] = new Thread(Current);
         ThreadArray[i].start();
     // }/workspaces/Software-Development-Coursework/cardgame/Test.txt
     }
-    Thread chill= new Thread(Current);
-    chill.start();
 }
     public void run() {
+        if(this.Thread_won == true){
+            Thread.currentThread().interrupt();
+        }
+        
+
+        
+       
+        
+
+        
+        
         System.out.println(Thread.currentThread());
         String ThreadName = Thread.currentThread().getName();
         System.out.println(ThreadName);
         String ThreaNumString = ThreadName.substring(7);
-        int ThreadNum = Integer.parseInt(ThreaNumString);
+
+        int ThreadNum = Integer.parseInt(ThreaNumString) + 1;
         System.out.println(ThreadNum);
         int TurnCount = 0;
-        while(true){
-            PlayersTurn(ThreadNum);
-            TurnCount +=1;
-            if (TurnCount ==10){
-                break;
-            } 
+        // synchronized(this){
+        while (Decks[ThreadNum].IsEmpty() == true){
+            try {
+                this.wait(); 
+            } catch (InterruptedException e) {
+                   Thread.currentThread().interrupt();
+            }
+                
+
         }
-    }
+        boolean emptyDeck =false;
+        for (int x = 0; x <Decks.length; x++){
+            if (Decks[x].IsEmpty() == true){
+                break;
+            }
+            else{
+                notifyAll();
+            }
+        }
+        while(true){
+        try{
+            PlayersTurn(ThreadNum);
+            System.out.println("done turn");
+            }
+            catch(NullPointerException e){ 
+        }
+        if (Players[ThreadNum].CheckWin() == true){
+            this.Thread_won = true;
+            Thread.interrupted();
+            break;
+        }
+      }
+    // }
 }
+}
+

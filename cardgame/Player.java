@@ -61,5 +61,21 @@ public class Player{
     
 
     }
+    public synchronized boolean CheckWin(){
+         int firstnum = 0;
+        for (int x = 0; x <this.Hand.length; x++){
+            if (x == 0){
+                firstnum = this.Hand[x].getValue();
+            }
+            if (this.Hand[x].getValue() != this.Hand[firstnum].getValue()){
+                return false;
+
+            }
+
+
+        }
+        return true;
+
+    }
     
 }
