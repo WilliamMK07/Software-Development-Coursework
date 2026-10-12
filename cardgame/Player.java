@@ -3,6 +3,7 @@ package cardgame;
 public class Player implements Runnable{
     private int PlayerNum;
     private Card [] Hand;
+    public volatile boolean WinnerFound = false;
     
      
     
@@ -88,21 +89,28 @@ public class Player implements Runnable{
         //Sort out wht happens when they win
         
     }
-    public boolean checkDeck(int PlayerNum){
-        Card [] NextDeck = CardGame.Decks[PlayerNum].returnDeck() ;
-        System.out.println(CardGame.Players[PlayerNum].showCurrentPlayerHand());
-        System.out.println(CardGame.Decks[PlayerNum].printPlayerDeck());
-        for (int i = 0 ; i< NextDeck.length; i++){
-            if (NextDeck[i] != null){
-                System.out.println(PlayerNum + " Approved");
-                return true;
-            }
+ 
+    
+    public synchronized boolean CheckWin(){
+        if (this.Hand[0] == null){
+            return false;
         }
-        System.out.println("DENIED");
-        return false;
+        int firstnum = this.Hand[0].getValue();
+        for (int x = 0; x <this.Hand.length; x++){
+            
+            
+            if (this.Hand[x] == null|| this.Hand[x].getValue() != firstnum ){
+                return false;
+
+            }
+
+
+        }
+        System.out.println("Player" + PlayerNum + "won");
+        return true;
+
     }
-    
-    
+
 
 public void run() {
         System.out.println(Thread.currentThread());
@@ -112,7 +120,8 @@ public void run() {
         int ThreadNum = Integer.parseInt(ThreaNumString);
         //System.out.println(ThreadNum);
         int TurnCount = 0;
-        boolean WinnerFound =false;
+        
+
         while(WinnerFound == false){
             // System.out.println("I'm system "+ ThreadNum);
             // if (ThreadNum == 3){
@@ -124,35 +133,21 @@ public void run() {
 
             //     }
             // }
-            if (checkDeck(ThreadNum) == true){
+            
                 try{
                 PlayersTurn(ThreadNum);
                 }
                 catch(NullPointerException e){
                     
                 }
-                TurnCount +=1;
-                if (TurnCount ==10){
-                    break;
-                }
-            }
-            else{
-                System.out.println("Thread "+ThreadNum);
-                try{
-                Thread.sleep(10000);
-                }
-                catch (InterruptedException e){}
-            }
-            // try{
-            // PlayersTurn(ThreadNum);
-            // TurnCount +=1;
-            // if (TurnCount ==10){
-            //     break;
-            // } 
-            // }
-            // catch(NullPointerException e){
-            //     System.out.println(ThreadName);
-            // }
+              if (CheckWin() == true){
+               WinnerFound = true;
+               }
+            
+           
         }
+        System.out.println("Games over");
+        
+        
     }
 }

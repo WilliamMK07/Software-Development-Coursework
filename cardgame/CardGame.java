@@ -10,6 +10,7 @@ public class CardGame{
     private Card [] AllCards;
     public static Player [] Players;
     public  static Deck [] Decks;
+    
 
     public CardGame(int ChosenPlayerNum, File Cpackfile){
         TotalPlayersnum = ChosenPlayerNum;
@@ -120,11 +121,22 @@ public static void main(String[] args) {
     CardGame Current = new CardGame(realTPlayersnum,myObj1);
     Current.readcardpack();
     Current.distrubuteCards();
+    Thread [] ThreadList = new Thread [realTPlayersnum];  
         for (int i = 0; i<realTPlayersnum;i++){
-        new Thread(Players[i]).start();
+            
+       ThreadList[i] = new Thread(Players[i]);
+       ThreadList[i].start();
+
+    
+    
     // }/workspaces/Software-Development-Coursework/cardgame/Test.txt
     }
-    
+    // for (int x = 0; x<ThreadList.length;x++){
+    //     ThreadList[x].interrupt();
+    //     System.out.println("Interrupted Thread" + x);
+
+    // }
+
     }
     
 }
