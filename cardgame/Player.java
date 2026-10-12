@@ -20,6 +20,7 @@ public class Player implements Runnable{
         for(int i= 0; i <this.Hand.length; i++){
             if (this.Hand[i] == (null)){
                 this.Hand[i] = pickedupcard;
+                break;
             }
         }
     }
@@ -93,7 +94,7 @@ public class Player implements Runnable{
         System.out.println(CardGame.Decks[PlayerNum].printPlayerDeck());
         for (int i = 0 ; i< NextDeck.length; i++){
             if (NextDeck[i] != null){
-                System.out.println("Approved");
+                System.out.println(PlayerNum + " Approved");
                 return true;
             }
         }
