@@ -40,6 +40,7 @@ public class Deck {
         else{
             Start = 0;
         }
+        System.out.println(this.DeckNum +" I'm removing card "+ PassedCard.getValue()+" To be added to hand");
         return PassedCard;
     }
     public synchronized String printPlayerDeck(){
@@ -51,5 +52,7 @@ public class Deck {
         }
     return Message;
     } 
-
+    public synchronized Card [] returnDeck(){
+        return this.DeckQueue;
+    }
 }
