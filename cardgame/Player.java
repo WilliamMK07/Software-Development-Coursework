@@ -1,6 +1,6 @@
 package cardgame;
 
-public class Player{
+public class Player implements Runnable{
     private int PlayerNum;
     private Card [] Hand;
     
@@ -16,20 +16,18 @@ public class Player{
     }
     public synchronized void addCardToHand(Card pickedupcard){
         //System.out.println("Im being ADded to " + pickedupcard.getValue());
+        System.out.println(this.PlayerNum + " I have added card " +pickedupcard.getValue());
         for(int i= 0; i <this.Hand.length; i++){
             if (this.Hand[i] == (null)){
                 this.Hand[i] = pickedupcard;
-                return;
-            }
-            else{
-                System.out.println("");
+                break;
             }
         }
     }
     
     public synchronized String showCurrentPlayerHand(){
         String Returnstring = " ";
-        Returnstring = "Player " + this.PlayerNum + " Current Hand" +"length: "+this.Hand[1];
+        Returnstring = "Player " + this.PlayerNum + " Current Hand";
         for (int x =0; x <this.Hand.length; x++){
             if (this.Hand[x] != (null)){
             Returnstring = Returnstring +" " + this.Hand[x].getValue();
@@ -57,25 +55,104 @@ public class Player{
         this.Hand[currentCardToBeRemoved].resetTurnsHeld();
         Card rCard = this.Hand[currentCardToBeRemoved];
         this.Hand[currentCardToBeRemoved] = null;
+        System.out.println(this.PlayerNum + " I have removed card "+ rCard.getValue() + " from hand");
         return rCard;
     
 
     }
-    public synchronized boolean CheckWin(){
-         int firstnum = 0;
-        for (int x = 0; x <this.Hand.length; x++){
-            if (x == 0){
-                firstnum = this.Hand[x].getValue();
-            }
-            if (this.Hand[x].getValue() != this.Hand[firstnum].getValue()){
-                return false;
-
-            }
-
-
+    public synchronized void PlayersTurn(int PlayerNum){
+        //PlayerNum is the array location of the player
+        int NextDeckListLocation = PlayerNum+1;
+        int CurrentPlayerListLocation = PlayerNum;
+        int CurrentDeckListLocation = PlayerNum;
+        if (PlayerNum+1 == CardGame.getTotalPlayersnum()){
+             NextDeckListLocation = 0;
         }
-        return true;
+        else{
+             NextDeckListLocation = PlayerNum+1;
+        }
+        CardGame.Decks[NextDeckListLocation].addCardToDeck(CardGame.Players[CurrentPlayerListLocation].CardToBeRemoved());
+        // Add FIle writing for discard here
+        System.out.println(CurrentDeckListLocation + " I've removed a card to "+ PlayerNum);
+        
+        
+        CardGame.Players[CurrentPlayerListLocation].addCardToHand(CardGame.Decks[CurrentDeckListLocation].removeCardFromDeck());
+        // Add file writing for adding to hand here
+        System.out.println(CurrentDeckListLocation + " I've added a card to " + PlayerNum);
+        
+        System.out.println("Hand: "+ CardGame.Players[CurrentPlayerListLocation].showCurrentPlayerHand() +"DEck: "+CardGame.Decks[CurrentDeckListLocation].printPlayerDeck() + CardGame.Decks[NextDeckListLocation].printPlayerDeck());
+       CardGame.Players[CurrentPlayerListLocation].showCurrentPlayerHand();
+        // Add file writing for Current Hand 
 
+        //Work on Hand checking to see if have won
+        //Sort out wht happens when they win
+        
+    }
+    public boolean checkDeck(int PlayerNum){
+        Card [] NextDeck = CardGame.Decks[PlayerNum].returnDeck() ;
+        System.out.println(CardGame.Players[PlayerNum].showCurrentPlayerHand());
+        System.out.println(CardGame.Decks[PlayerNum].printPlayerDeck());
+        for (int i = 0 ; i< NextDeck.length; i++){
+            if (NextDeck[i] != null){
+                System.out.println(PlayerNum + " Approved");
+                return true;
+            }
+        }
+        System.out.println("DENIED");
+        return false;
     }
     
+    
+
+public void run() {
+        System.out.println(Thread.currentThread());
+        String ThreadName = Thread.currentThread().getName();
+        System.out.println(ThreadName);
+        String ThreaNumString = ThreadName.substring(7);
+        int ThreadNum = Integer.parseInt(ThreaNumString);
+        //System.out.println(ThreadNum);
+        int TurnCount = 0;
+        boolean WinnerFound =false;
+        while(WinnerFound == false){
+            // System.out.println("I'm system "+ ThreadNum);
+            // if (ThreadNum == 3){
+            //     System3(3);
+            //     try{
+            //     Thread.sleep(1000000000);
+            //     }
+            //     catch(InterruptedException e){
+
+            //     }
+            // }
+            if (checkDeck(ThreadNum) == true){
+                try{
+                PlayersTurn(ThreadNum);
+                }
+                catch(NullPointerException e){
+                    
+                }
+                TurnCount +=1;
+                if (TurnCount ==10){
+                    break;
+                }
+            }
+            else{
+                System.out.println("Thread "+ThreadNum);
+                try{
+                Thread.sleep(10000);
+                }
+                catch (InterruptedException e){}
+            }
+            // try{
+            // PlayersTurn(ThreadNum);
+            // TurnCount +=1;
+            // if (TurnCount ==10){
+            //     break;
+            // } 
+            // }
+            // catch(NullPointerException e){
+            //     System.out.println(ThreadName);
+            // }
+        }
+    }
 }

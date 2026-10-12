@@ -14,14 +14,6 @@ public class Deck {
         this.Start = 0;
         this.End = 0;
     }
-    public synchronized boolean IsEmpty(){
-        if(this.End == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
 
     public synchronized void addCardToDeck(Card NewCard){
         this.DeckQueue[End] = NewCard;
@@ -48,6 +40,7 @@ public class Deck {
         else{
             Start = 0;
         }
+        System.out.println(this.DeckNum +" I'm removing card "+ PassedCard.getValue()+" To be added to hand");
         return PassedCard;
     }
     public synchronized String printPlayerDeck(){
@@ -59,5 +52,7 @@ public class Deck {
         }
     return Message;
     } 
-
+    public synchronized Card [] returnDeck(){
+        return this.DeckQueue;
+    }
 }
