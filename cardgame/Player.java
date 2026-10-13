@@ -1,9 +1,11 @@
 package cardgame;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Player implements Runnable{
     private int PlayerNum;
     private Card [] Hand;
-    public volatile boolean WinnerFound = false;
+    private static final AtomicBoolean WinnerFound = new AtomicBoolean(false);
+    
     
      
     
@@ -62,6 +64,10 @@ public class Player implements Runnable{
 
     }
     public synchronized void PlayersTurn(int PlayerNum){
+
+        if (WinnerFound.get() == true){
+            return;
+        }
         //PlayerNum is the array location of the player
         int NextDeckListLocation = PlayerNum+1;
         int CurrentPlayerListLocation = PlayerNum;
@@ -75,7 +81,6 @@ public class Player implements Runnable{
         CardGame.Decks[NextDeckListLocation].addCardToDeck(CardGame.Players[CurrentPlayerListLocation].CardToBeRemoved());
         // Add FIle writing for discard here
         System.out.println(CurrentDeckListLocation + " I've removed a card to "+ PlayerNum);
-        
         
         CardGame.Players[CurrentPlayerListLocation].addCardToHand(CardGame.Decks[CurrentDeckListLocation].removeCardFromDeck());
         // Add file writing for adding to hand here
@@ -110,6 +115,8 @@ public class Player implements Runnable{
         return true;
 
     }
+     
+ 
 
 
 public void run() {
@@ -122,7 +129,7 @@ public void run() {
         int TurnCount = 0;
         
 
-        while(WinnerFound == false){
+        while(WinnerFound.get() == false){
             // System.out.println("I'm system "+ ThreadNum);
             // if (ThreadNum == 3){
             //     System3(3);
@@ -133,15 +140,18 @@ public void run() {
 
             //     }
             // }
+            if(WinnerFound.get() == true){
+                break;
+            }
             
-                try{
+                //try{
                 PlayersTurn(ThreadNum);
-                }
-                catch(NullPointerException e){
-                    
-                }
-              if (CheckWin() == true){
-               WinnerFound = true;
+                //}
+                //catch(NullPointerException e){
+                   // e.printStackTrace();
+                //}
+              if (CheckWin() == true && WinnerFound.compareAndSet(false, true)){
+               System.out.println("Player"+ PlayerNum + "won definetly");
                }
             
            
