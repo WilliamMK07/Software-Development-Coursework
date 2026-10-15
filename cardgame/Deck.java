@@ -35,17 +35,22 @@ public class Deck {
         //     this.End +=1;
         // }
     }
-    public synchronized Card removeCardFromDeck(){
+    public synchronized boolean CheckDeck(){
         while (this.Decksize == 0){
 
 
             try{
                 System.out.println("Player" + DeckNum + " can no longer go as the deck is empty so is being frozen out");
-            wait();
-             System.out.println("Player" + DeckNum + " can no longer go as the deck is empty so is being frozen out");
+                wait();
+                System.out.println("Player " + DeckNum + " can no longer AHHHHHHHHHH go as the deck is empty so is being frozen out");
             }
             catch(InterruptedException e) {}
+            if (CardGame.Players[DeckNum-1].IsWinnerFound() == true)
+                return false;
         }
+        return true;
+    }
+    public synchronized Card removeCardFromDeck(){
         Card PassedCard = this.DeckQueue[Start];
         this.DeckQueue[Start] = null;
         this.Decksize -= 1;

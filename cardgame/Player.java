@@ -78,11 +78,10 @@ public class Player implements Runnable{
         else{
              NextDeckListLocation = PlayerNum+1;
         }
+        if(CardGame.Decks[CurrentDeckListLocation].CheckDeck() == true){
+            
         CardGame.Decks[NextDeckListLocation].addCardToDeck(CardGame.Players[CurrentPlayerListLocation].CardToBeRemoved());
         // Add FIle writing for discard here
-         if (WinnerFound.get() == true){
-            return;
-        }
         System.out.println(CurrentDeckListLocation + " I've removed a card to "+ PlayerNum);
         
         CardGame.Players[CurrentPlayerListLocation].addCardToHand(CardGame.Decks[CurrentDeckListLocation].removeCardFromDeck());
@@ -98,7 +97,8 @@ public class Player implements Runnable{
 
         //Work on Hand checking to see if have won
         //Sort out wht happens when they win
-        
+        }
+        else{return;}
     }
  
     
@@ -150,6 +150,7 @@ public void run() {
             }
             
                 //try{
+                TurnCount+=1;
                 PlayersTurn(ThreadNum);
                 //}
                 //catch(NullPointerException e){
@@ -163,19 +164,22 @@ public void run() {
             
            
         }
-        System.out.println("Games over");
-        
+        System.out.println("Games over Player "+PlayerNum);
+        System.out.println("I'm Player "+ PlayerNum + " I had "+ TurnCount+" turns");
         
     }
     public synchronized void wakeWaitingthreads(){
         for(int x = 0; x< CardGame.Decks.length; x++){
             synchronized(CardGame.Decks[x]){
                 CardGame.Decks[x].notifyAll();
-
+                System.out.println("I have notified"+x);
             }
 
         }
         
         
+    }
+    public synchronized boolean IsWinnerFound(){
+        return WinnerFound.get();
     }
 }

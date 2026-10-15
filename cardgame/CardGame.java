@@ -9,7 +9,7 @@ public class CardGame{
     private File CardPackFile;
     private Card [] AllCards;
     public static Player [] Players;
-    public  static Deck [] Decks;
+    public static Deck [] Decks;
     
 
     public CardGame(int ChosenPlayerNum, File Cpackfile){
@@ -149,7 +149,7 @@ public static void main(String[] args) {
     System.out.println("Everything finished");
     // for (int x = 0; x<ThreadList.length;x++){
     //     ThreadList[x].interrupt();
-    //     System.out.println("Interrupted Thread" + x);
+    //     System.out.println("Interrupted Thread" + x);.
 
     // }
 
