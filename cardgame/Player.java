@@ -5,21 +5,22 @@ public class Player implements Runnable{
     private int PlayerNum;
     private Card [] Hand;
     private static final AtomicBoolean WinnerFound = new AtomicBoolean(false);
-    
+    private CardGame Current;
+    private int Actual_PlayerNum;
     
      
     
-    public Player(int Pnum){
+    public Player(int Pnum,CardGame Current){
         
         this.PlayerNum = Pnum;
         this.Hand = new Card[4];
-
+        this.Current = Current;
 
 
     }
     public synchronized void addCardToHand(Card pickedupcard){
         //System.out.println("Im being ADded to " + pickedupcard.getValue());
-        System.out.println(this.PlayerNum + " I have added card " +pickedupcard.getValue());
+        System.out.println(this.PlayerNum + " I have added card " +pickedupcard.getValue()+" to my hand");
         for(int i= 0; i <this.Hand.length; i++){
             if (this.Hand[i] == (null)){
                 this.Hand[i] = pickedupcard;
@@ -58,47 +59,10 @@ public class Player implements Runnable{
         this.Hand[currentCardToBeRemoved].resetTurnsHeld();
         Card rCard = this.Hand[currentCardToBeRemoved];
         this.Hand[currentCardToBeRemoved] = null;
-        System.out.println(this.PlayerNum + " I have removed card "+ rCard.getValue() + " from hand");
+        System.out.println(this.PlayerNum + " I have removed card "+ rCard.getValue() + " from my hand");
         return rCard;
     
 
-    }
-    public synchronized void PlayersTurn(int PlayerNum){
-
-        if (WinnerFound.get() == true){
-            return;
-        }
-        //PlayerNum is the array location of the player
-        int NextDeckListLocation = PlayerNum+1;
-        int CurrentPlayerListLocation = PlayerNum;
-        int CurrentDeckListLocation = PlayerNum;
-        if (PlayerNum+1 == CardGame.getTotalPlayersnum()){
-             NextDeckListLocation = 0;
-        }
-        else{
-             NextDeckListLocation = PlayerNum+1;
-        }
-        if(CardGame.Decks[CurrentDeckListLocation].CheckDeck() == true){
-            
-        CardGame.Decks[NextDeckListLocation].addCardToDeck(CardGame.Players[CurrentPlayerListLocation].CardToBeRemoved());
-        // Add FIle writing for discard here
-        System.out.println(CurrentDeckListLocation + " I've removed a card to "+ PlayerNum);
-        
-        CardGame.Players[CurrentPlayerListLocation].addCardToHand(CardGame.Decks[CurrentDeckListLocation].removeCardFromDeck());
-        // Add file writing for adding to hand here
-         if (WinnerFound.get() == true){
-            return;
-        }
-        System.out.println(CurrentDeckListLocation + " I've added a card to " + PlayerNum);
-        
-        System.out.println("Hand: "+ CardGame.Players[CurrentPlayerListLocation].showCurrentPlayerHand() +"DEck: "+CardGame.Decks[CurrentDeckListLocation].printPlayerDeck() + CardGame.Decks[NextDeckListLocation].printPlayerDeck());
-       CardGame.Players[CurrentPlayerListLocation].showCurrentPlayerHand();
-        // Add file writing for Current Hand 
-
-        //Work on Hand checking to see if have won
-        //Sort out wht happens when they win
-        }
-        else{return;}
     }
  
     
@@ -150,13 +114,17 @@ public void run() {
             }
             
                 //try{
+                if(CardGame.Decks[ThreadNum].CheckDeck() == true){
                 TurnCount+=1;
-                PlayersTurn(ThreadNum);
+                System.out.println("I'm taking a turn Player "+ PlayerNum);
+                Current.PlayersTurn(ThreadNum,WinnerFound);
+                }
+            
                 //}
                 //catch(NullPointerException e){
                    // e.printStackTrace();
                 //}
-              if (CheckWin() == true && WinnerFound.compareAndSet(false, true)){
+              if (CheckWin() == true ){//&& WinnerFound.compareAndSet(false, true)
                System.out.println("Player"+ PlayerNum + "won definetly");
                wakeWaitingthreads();
 
@@ -181,5 +149,8 @@ public void run() {
     }
     public synchronized boolean IsWinnerFound(){
         return WinnerFound.get();
+    }
+    public synchronized void SetWinner(){
+        WinnerFound.set(true);
     }
 }

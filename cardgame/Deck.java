@@ -36,19 +36,22 @@ public class Deck {
         // }
     }
     public synchronized boolean CheckDeck(){
-        while (this.Decksize == 0){
+        int PNum =DeckNum+1;
+        System.out.println("Player " + PNum + " is checking deck it is size "+ this.Decksize);
+        if (this.Decksize == 0){
 
 
             try{
-                System.out.println("Player" + DeckNum + " can no longer go as the deck is empty so is being frozen out");
+                System.out.println("Player" + PNum + " can no longer go as the deck is empty so is being frozen out");
                 wait();
-                System.out.println("Player " + DeckNum + " can no longer AHHHHHHHHHH go as the deck is empty so is being frozen out");
+                System.out.println("Player " + PNum + " is now awake");
             }
             catch(InterruptedException e) {}
-            if (CardGame.Players[DeckNum-1].IsWinnerFound() == true)
+            if (CardGame.Players[DeckNum-1].IsWinnerFound() == true)//potential error
                 return false;
         }
         return true;
+    
     }
     public synchronized Card removeCardFromDeck(){
         Card PassedCard = this.DeckQueue[Start];
@@ -68,7 +71,7 @@ public class Deck {
         // else{
         //     Start = 0;
         // }
-        System.out.println(this.DeckNum +" I'm removing card "+ PassedCard.getValue()+" To be added to hand");
+        //System.out.println(this.DeckNum +" I'm removing card "+ PassedCard.getValue()+" To be added to hand");
         
         return PassedCard;
     }

@@ -2,6 +2,7 @@ package cardgame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class CardGame{
@@ -10,6 +11,7 @@ public class CardGame{
     private Card [] AllCards;
     public static Player [] Players;
     public static Deck [] Decks;
+
     
 
     public CardGame(int ChosenPlayerNum, File Cpackfile){
@@ -63,10 +65,10 @@ public class CardGame{
     }
     return(true);
     }
-    public void distrubuteCards(){
+    public void distrubuteCards(CardGame A){
         
         for(int x=0;x<TotalPlayersnum;x++){
-            Players[x] = new Player(x+1);
+            Players[x] = new Player(x+1,A);
             Decks[x] = new Deck(x+1,this.TotalPlayersnum);
         }
         int CurrentPlayer = 0;
@@ -89,6 +91,43 @@ public class CardGame{
           System.out.println("Player " + x + ": " + Players[x].showCurrentPlayerHand() + Decks[x].printPlayerDeck()); 
         }
 
+    }
+    public synchronized void PlayersTurn(int PlayerNum, AtomicBoolean WinnerFound){
+        if (WinnerFound.get() == true){
+            return;
+        }
+        //PlayerNum is the array location of the player
+        int NextDeckListLocation = PlayerNum+1;
+        int CurrentPlayerListLocation = PlayerNum;
+        int CurrentDeckListLocation = PlayerNum;
+        if (PlayerNum+1 == CardGame.getTotalPlayersnum()){
+             NextDeckListLocation = 0;
+        }
+        else{
+             NextDeckListLocation = PlayerNum+1;
+        }
+        
+            
+        Decks[NextDeckListLocation].addCardToDeck(Players[CurrentPlayerListLocation].CardToBeRemoved());
+        // Add FIle writing for discard here
+        //System.out.println(NextDeckListLocation + " I've removed a card from "+ PlayerNum + " HAND");
+        
+        Players[CurrentPlayerListLocation].addCardToHand(Decks[CurrentDeckListLocation].removeCardFromDeck());
+        // Add file writing for adding to hand here
+         if (WinnerFound.get() == true){
+            return;
+        }
+        //System.out.println(NextDeckListLocation + " I've added a card to " + PlayerNum+" DECK");
+        
+        System.out.println("Hand: "+ CardGame.Players[CurrentPlayerListLocation].showCurrentPlayerHand() +"DEck: "+CardGame.Decks[CurrentDeckListLocation].printPlayerDeck() + CardGame.Decks[NextDeckListLocation].printPlayerDeck());
+       CardGame.Players[CurrentPlayerListLocation].showCurrentPlayerHand();
+       if(Players[CurrentDeckListLocation].CheckWin() == true){
+        Players[CurrentDeckListLocation].SetWinner();
+       }
+        // Add file writing for Current Hand 
+
+        //Work on Hand checking to see if have won
+        //Sort out wht happens when they win
     }
     
 
@@ -120,7 +159,7 @@ public static void main(String[] args) {
     }
     CardGame Current = new CardGame(realTPlayersnum,myObj1);
     Current.readcardpack();
-    Current.distrubuteCards();
+    Current.distrubuteCards(Current);
     Thread [] ThreadList = new Thread [realTPlayersnum];  
         for (int i = 0; i<realTPlayersnum;i++){
             
@@ -129,11 +168,11 @@ public static void main(String[] args) {
 
     
     
-    // }/workspaces/Software-Development-Coursework/cardgame/Test.txt
+    // /workspaces/Software-Development-Coursework/cardgame/Test.txt
     }
-    for (int i = 0; i<realTPlayersnum;i++){
+    for (int z = 0; z<realTPlayersnum;z++){
         try{
-                    ThreadList[i].join();
+                    ThreadList[z].join();
 
 
         }
@@ -143,8 +182,8 @@ public static void main(String[] args) {
 
     // }/workspaces/Software-Development-Coursework/cardgame/Test.txt
     }
-    for( int i=0; i<realTPlayersnum;i++){
-        System.out.println(Players[i].showCurrentPlayerHand());
+    for( int x=0; x<realTPlayersnum;x++){
+        System.out.println(Players[x].showCurrentPlayerHand());
     }
     System.out.println("Everything finished");
     // for (int x = 0; x<ThreadList.length;x++){
@@ -154,5 +193,6 @@ public static void main(String[] args) {
     // }
 
     }
-    
 }
+
+    
