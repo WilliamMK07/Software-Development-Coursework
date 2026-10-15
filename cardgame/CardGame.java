@@ -131,6 +131,22 @@ public static void main(String[] args) {
     
     // }/workspaces/Software-Development-Coursework/cardgame/Test.txt
     }
+    for (int i = 0; i<realTPlayersnum;i++){
+        try{
+                    ThreadList[i].join();
+
+
+        }
+        catch( InterruptedException e){
+            System.out.println("I failed ");
+        }
+
+    // }/workspaces/Software-Development-Coursework/cardgame/Test.txt
+    }
+    for( int i=0; i<realTPlayersnum;i++){
+        System.out.println(Players[i].showCurrentPlayerHand());
+    }
+    System.out.println("Everything finished");
     // for (int x = 0; x<ThreadList.length;x++){
     //     ThreadList[x].interrupt();
     //     System.out.println("Interrupted Thread" + x);

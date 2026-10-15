@@ -80,10 +80,16 @@ public class Player implements Runnable{
         }
         CardGame.Decks[NextDeckListLocation].addCardToDeck(CardGame.Players[CurrentPlayerListLocation].CardToBeRemoved());
         // Add FIle writing for discard here
+         if (WinnerFound.get() == true){
+            return;
+        }
         System.out.println(CurrentDeckListLocation + " I've removed a card to "+ PlayerNum);
         
         CardGame.Players[CurrentPlayerListLocation].addCardToHand(CardGame.Decks[CurrentDeckListLocation].removeCardFromDeck());
         // Add file writing for adding to hand here
+         if (WinnerFound.get() == true){
+            return;
+        }
         System.out.println(CurrentDeckListLocation + " I've added a card to " + PlayerNum);
         
         System.out.println("Hand: "+ CardGame.Players[CurrentPlayerListLocation].showCurrentPlayerHand() +"DEck: "+CardGame.Decks[CurrentDeckListLocation].printPlayerDeck() + CardGame.Decks[NextDeckListLocation].printPlayerDeck());
@@ -111,7 +117,6 @@ public class Player implements Runnable{
 
 
         }
-        System.out.println("Player" + PlayerNum + "won");
         return true;
 
     }
@@ -152,11 +157,24 @@ public void run() {
                 //}
               if (CheckWin() == true && WinnerFound.compareAndSet(false, true)){
                System.out.println("Player"+ PlayerNum + "won definetly");
+               wakeWaitingthreads();
+
                }
             
            
         }
         System.out.println("Games over");
+        
+        
+    }
+    public synchronized void wakeWaitingthreads(){
+        for(int x = 0; x< CardGame.Decks.length; x++){
+            synchronized(CardGame.Decks[x]){
+                CardGame.Decks[x].notifyAll();
+
+            }
+
+        }
         
         
     }
