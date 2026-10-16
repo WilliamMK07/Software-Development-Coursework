@@ -1,12 +1,14 @@
 package cardgame;
-
+import java.io.File;
 public class Deck {
     private int Start;
     private int End;
     private Card [] DeckQueue;
-    private int DeckNum;
+    private int DeckNum; // actual number -- not list location
     private int DeckLength;
     private int Decksize = 0;
+    public File Deckfile;
+    public String DeckFileName;
 
     public Deck (int DeckNum, int TotalPlayers){
         this.DeckNum = DeckNum;
@@ -14,6 +16,10 @@ public class Deck {
         this.DeckQueue = new Card [DeckLength];
         this.Start = 0;
         this.End = 0;
+        this.DeckFileName = "Deck " + DeckNum + ".txt";
+        this.Deckfile = new File(this.DeckFileName);
+        
+        
     }
 
     public synchronized void addCardToDeck(Card NewCard){
@@ -24,7 +30,7 @@ public class Deck {
         this.DeckQueue[End] = NewCard;
         this.Decksize += 1;
         End = (End + 1) % DeckLength;
-        System.out.println("notifying that Player" + DeckNum + " can play again");
+        // System.out.println("notifying that Player" + DeckNum + " can play again");
         
         notify();
         
@@ -37,14 +43,14 @@ public class Deck {
     }
     public synchronized boolean CheckDeck(){
         int PNum =DeckNum+1;
-        System.out.println("Player " + PNum + " is checking deck it is size "+ this.Decksize);
+        // System.out.println("Player " + PNum + " is checking deck it is size "+ this.Decksize);
         if (this.Decksize == 0){
 
 
             try{
-                System.out.println("Player" + PNum + " can no longer go as the deck is empty so is being frozen out");
+                // System.out.println("Player" + PNum + " can no longer go as the deck is empty so is being frozen out");
                 wait();
-                System.out.println("Player " + PNum + " is now awake");
+                // System.out.println("Player " + PNum + " is now awake");
             }
             catch(InterruptedException e) {}
             if (CardGame.Players[DeckNum-1].IsWinnerFound() == true)//potential error

@@ -1,0 +1,10 @@
+
+deck1 contents: 9 7 1 12 14
+
+deck1 contents: 6 7 1 1 9 7 1
+
+deck1 contents: 9 7 1
+
+deck1 contents: 9 7 1 12
+
+deck1 contents: 1 9

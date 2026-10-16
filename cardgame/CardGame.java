@@ -1,8 +1,13 @@
 package cardgame;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import java.io.Writer;
 
 
 public class CardGame{
@@ -11,6 +16,7 @@ public class CardGame{
     private Card [] AllCards;
     public static Player [] Players;
     public static Deck [] Decks;
+    
 
     
 
@@ -88,7 +94,17 @@ public class CardGame{
             }
         }
         for(int x=0;x<TotalPlayersnum;x++){
-          System.out.println("Player " + x + ": " + Players[x].showCurrentPlayerHand() + Decks[x].printPlayerDeck()); 
+           System.out.println("Player " + x + ": " + Players[x].showCurrentPlayerHand() + Decks[x].printPlayerDeck()); 
+          try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Players[x].Filename));
+            writer.write("Intial Hand:  " + Players[x].showCurrentPlayerHand());
+            writer.newLine();
+            writer.close();
+          }
+          catch(IOException e){
+            System.out.println("File writing error");
+
+          }
         }
 
     }
@@ -107,12 +123,37 @@ public class CardGame{
              NextDeckListLocation = PlayerNum+1;
         }
         
+       Card DiscardedCardFromHand = Players[CurrentPlayerListLocation].CardToBeRemoved();
+       
             
-        Decks[NextDeckListLocation].addCardToDeck(Players[CurrentPlayerListLocation].CardToBeRemoved());
+        Decks[NextDeckListLocation].addCardToDeck(DiscardedCardFromHand);
+        String DiscardLine = ("Player " + (PlayerNum+1) + " Discards a "+ DiscardedCardFromHand.getValue()+ " to  Deck " + (NextDeckListLocation+1));
+        System.out.println(DiscardLine);
         // Add FIle writing for discard here
         //System.out.println(NextDeckListLocation + " I've removed a card from "+ PlayerNum + " HAND");
+        Card DrawnCardFromPlayersDeck = Decks[CurrentDeckListLocation].removeCardFromDeck();
+        Players[CurrentPlayerListLocation].addCardToHand(DrawnCardFromPlayersDeck);
+        String  DrawLine = (" Player " + (PlayerNum+1) + " Draws a " + DrawnCardFromPlayersDeck.getValue() + " from Deck " + (CurrentDeckListLocation+1));
+        System.out.println(DrawLine);
+        try{
+            // System.out.println("Writing");
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Players[CurrentPlayerListLocation].Filename, true));
         
-        Players[CurrentPlayerListLocation].addCardToHand(Decks[CurrentDeckListLocation].removeCardFromDeck());
+            writer.write(DiscardLine);
+            writer.newLine();
+            writer.newLine();
+            writer.write(DrawLine);
+            writer.newLine();
+            writer.newLine();
+            writer.write(Players[CurrentPlayerListLocation].showCurrentPlayerHand());
+            writer.newLine();
+            writer.newLine();
+            writer.close();
+            // System.out.println("File closed");
+        }
+        catch(IOException a){
+            System.out.println("IO Error");
+        }
         // Add file writing for adding to hand here
          if (WinnerFound.get() == true){
             return;
@@ -153,7 +194,7 @@ public static void main(String[] args) {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
-        System.out.println(counter);
+        //System.out.println(counter);
         if(counter == (realTPlayersnum*8))
             break;
     }
@@ -183,9 +224,34 @@ public static void main(String[] args) {
     // }/workspaces/Software-Development-Coursework/cardgame/Test.txt
     }
     for( int x=0; x<realTPlayersnum;x++){
-        System.out.println(Players[x].showCurrentPlayerHand());
+        try{
+        // System.out.println(Players[x].showCurrentPlayerHand());
+        BufferedWriter writer = new BufferedWriter(new FileWriter(Players[x].Filename, true));
+        writer.newLine();
+        writer.write("Final Hand: " + Players[x].showCurrentPlayerHand());
+        writer.close();
+
+        }
+        catch(IOException e){
+
+        }
     }
-    System.out.println("Everything finished");
+        try{
+            for( int y=0; y<realTPlayersnum;y++){
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Decks[y].DeckFileName, true));
+            writer.newLine();
+            writer.write(Decks[y]. printPlayerDeck());
+            writer.newLine();
+            writer.close();
+            }
+        }
+          catch(IOException f){
+
+          }
+        }
+
+
+    //System.out.println("Everything finished");
     // for (int x = 0; x<ThreadList.length;x++){
     //     ThreadList[x].interrupt();
     //     System.out.println("Interrupted Thread" + x);.
@@ -193,6 +259,6 @@ public static void main(String[] args) {
     // }
 
     }
-}
+
 
     

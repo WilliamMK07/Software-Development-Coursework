@@ -1,0 +1,10 @@
+
+deck2 contents: 7 12 16 2 6 7
+
+deck2 contents: 7 12
+
+deck2 contents: 17 7 3 5 2 7 12 16 2 6 7
+
+deck2 contents: 16 2 6 7
+
+deck2 contents: 7 12 16 2 6

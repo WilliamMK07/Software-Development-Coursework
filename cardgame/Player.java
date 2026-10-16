@@ -1,5 +1,12 @@
 package cardgame;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
+import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class Player implements Runnable{
     private int PlayerNum;
@@ -7,6 +14,9 @@ public class Player implements Runnable{
     private static final AtomicBoolean WinnerFound = new AtomicBoolean(false);
     private CardGame Current;
     private int Actual_PlayerNum;
+    private static final AtomicInteger Winnernum = new AtomicInteger(0);
+    public File PlayerFile;
+    public String Filename;
     
      
     
@@ -15,12 +25,14 @@ public class Player implements Runnable{
         this.PlayerNum = Pnum;
         this.Hand = new Card[4];
         this.Current = Current;
+        this.PlayerFile = new File("Player " +(this.PlayerNum+1) + ".txt");
+        this.Filename = "Player " +this.PlayerNum + ".txt";
 
 
     }
     public synchronized void addCardToHand(Card pickedupcard){
         //System.out.println("Im being ADded to " + pickedupcard.getValue());
-        System.out.println(this.PlayerNum + " I have added card " +pickedupcard.getValue()+" to my hand");
+        //System.out.println(this.PlayerNum + " I have added card " +pickedupcard.getValue()+" to my hand");
         for(int i= 0; i <this.Hand.length; i++){
             if (this.Hand[i] == (null)){
                 this.Hand[i] = pickedupcard;
@@ -31,7 +43,7 @@ public class Player implements Runnable{
     
     public synchronized String showCurrentPlayerHand(){
         String Returnstring = " ";
-        Returnstring = "Player " + this.PlayerNum + " Current Hand";
+        Returnstring = "Player " + this.PlayerNum + " Current Hand: ";
         for (int x =0; x <this.Hand.length; x++){
             if (this.Hand[x] != (null)){
             Returnstring = Returnstring +" " + this.Hand[x].getValue();
@@ -59,7 +71,7 @@ public class Player implements Runnable{
         this.Hand[currentCardToBeRemoved].resetTurnsHeld();
         Card rCard = this.Hand[currentCardToBeRemoved];
         this.Hand[currentCardToBeRemoved] = null;
-        System.out.println(this.PlayerNum + " I have removed card "+ rCard.getValue() + " from my hand");
+        // System.out.println(this.PlayerNum + " I have removed card "+ rCard.getValue() + " from my hand");
         return rCard;
     
 
@@ -116,7 +128,7 @@ public void run() {
                 //try{
                 if(CardGame.Decks[ThreadNum].CheckDeck() == true){
                 TurnCount+=1;
-                System.out.println("I'm taking a turn Player "+ PlayerNum);
+                //System.out.println("I'm taking a turn Player "+ PlayerNum);
                 Current.PlayersTurn(ThreadNum,WinnerFound);
                 }
             
@@ -125,22 +137,58 @@ public void run() {
                    // e.printStackTrace();
                 //}
               if (CheckWin() == true ){//&& WinnerFound.compareAndSet(false, true)
-               System.out.println("Player"+ PlayerNum + "won definetly");
+               System.out.println("Player "+ PlayerNum + " Wins ");
+               Winnernum.set(PlayerNum);
+               
                wakeWaitingthreads();
+               for(int x=0;x<CardGame.getTotalPlayersnum();x++){
+          System.out.println("Player " + x + ": " + CardGame.Players[x].showCurrentPlayerHand() + CardGame.Decks[x].printPlayerDeck()); 
+          try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(CardGame.Players[x].Filename, true));
+ 
+            writer.newLine();
+            writer.write("Player " + PlayerNum + " Wins");
+            writer.newLine();
+            writer.close();
+          }
+          catch(IOException e){
+            System.out.println("File writing error");
+
+          }
+        }
+
 
                }
             
            
         }
-        System.out.println("Games over Player "+PlayerNum);
-        System.out.println("I'm Player "+ PlayerNum + " I had "+ TurnCount+" turns");
+        // System.out.println("I'm Player "+ PlayerNum + " I had "+ TurnCount+" turns");
+        // System.out.println("Player Exits "+PlayerNum);
         
-    }
+          try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(this.Filename, true));
+            if(PlayerNum != Winnernum.get()){
+                writer.newLine();
+                writer.write("Player " + Winnernum.get() +" informs player " + PlayerNum + " that Player " + Winnernum.get() + " has won. " );
+            }
+        
+            writer.newLine();
+            writer.write("Player " + PlayerNum + " Exits");
+            writer.close();
+          }
+          
+          catch(IOException e){
+            System.out.println("File writing error");
+
+          }
+        }
+    
+        
     public synchronized void wakeWaitingthreads(){
         for(int x = 0; x< CardGame.Decks.length; x++){
             synchronized(CardGame.Decks[x]){
                 CardGame.Decks[x].notifyAll();
-                System.out.println("I have notified"+x);
+                // System.out.println("I have notified"+x);
             }
 
         }
@@ -152,5 +200,6 @@ public void run() {
     }
     public synchronized void SetWinner(){
         WinnerFound.set(true);
+        Winnernum.set(PlayerNum);
     }
 }

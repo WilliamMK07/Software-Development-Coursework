@@ -1,0 +1,10 @@
+
+deck4 contents: 4 4
+
+deck4 contents: 18 8 4 4 13 17 7
+
+deck4 contents: 18 8
+
+deck4 contents: 8 4 4 13
+
+deck4 contents: 12 14 18 8 4 4 13 17 7
