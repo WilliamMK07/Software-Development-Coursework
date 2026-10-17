@@ -1,6 +1,7 @@
 package cardgame;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 public class TestDeckClass {
     private int testDeckNum =1;
@@ -33,15 +34,24 @@ public class TestDeckClass {
     TestDeck.addCardToDeck(TestCard2);
     String TestShouldbestring =  "deck1 contents: 12";
     Card testRemovedCard = TestDeck.removeCardFromDeck();
+    Card TestCard3 = new Card(7);
     assertEquals(5,testRemovedCard.getValue());
     assertTrue(TestShouldbestring.equals(TestDeck.printPlayerDeck()));
-    //assertFalse(Tes)
+    TestDeck.addCardToDeck(TestCard3);
+    String TestShouldbeOutputFIFO = "deck1 contents: 12 7";
+    assertTrue(TestShouldbeOutputFIFO.equals(TestDeck.printPlayerDeck()));
+
 
 
    }
    @Test 
-   public void testCheckDeck(){
+   public void testCheckDeckOutsideofgameloop(){
     Deck TestDeck = new Deck(testDeckNum,testTotalPlayers);
+    Card TestCard1 = new Card(9);
+    TestDeck.addCardToDeck(TestCard1);
+    System.out.println(TestDeck.CheckDeck());
+
+    assertTrue(TestDeck.CheckDeck());
     
-   }
+   } 
 }

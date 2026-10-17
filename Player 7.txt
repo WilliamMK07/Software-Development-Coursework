@@ -125,9 +125,27 @@ Player 7 Discards a 18 to  Deck 8
 
 Player 7 Current Hand:  7 21 1 7
 
+Player 7 Discards a 21 to  Deck 8
 
-Player 3 informs player 7 that Player 3 has won. 
+ Player 7 Draws a 17 from Deck 7
+
+Player 7 Current Hand:  7 17 1 7
+
+Player 7 Discards a 1 to  Deck 8
+
+ Player 7 Draws a 8 from Deck 7
+
+Player 7 Current Hand:  7 17 8 7
+
+Player 7 Discards a 17 to  Deck 8
+
+ Player 7 Draws a 15 from Deck 7
+
+Player 7 Current Hand:  7 15 8 7
+
+
+Player 4 informs player 7 that Player 4 has won. 
 Player 7 Exits
-Player 3 Wins
+Player 4 Wins
 
-Final Hand: Player 7 Current Hand:  7 21 1 7
+Final Hand: Player 7 Current Hand:  7 15 8 7

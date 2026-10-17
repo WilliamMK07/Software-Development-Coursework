@@ -140,6 +140,6 @@ Player 8 Current Hand:  2 2 8 21
 
 Player 3 informs player 8 that Player 3 has won. 
 Player 8 Exits
-Player 3 Wins
+Player 4 Wins
 
 Final Hand: Player 8 Current Hand:  2 2 8 21

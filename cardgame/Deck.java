@@ -93,5 +93,22 @@ public class Deck {
     public synchronized Card [] returnDeck(){
         return this.DeckQueue;
     }
+    public boolean isEmpty(){
+        int Count = 0;
+        for (int r = 0; r<CardGame.getTotalPlayersnum();r++){
+            if(this.DeckQueue[r] != null){
+                Count += 1;
+            }
+        }
+        if (Count == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public int getDecksize(){
+        return this.Decksize;
+    }
     
 }

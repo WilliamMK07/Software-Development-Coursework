@@ -174,39 +174,50 @@ public class CardGame{
 
 public static void main(String[] args) {
     Scanner myObj = new Scanner(System.in);
-    System.out.println("Please enter the number of players");
-    String TPlayersnum = myObj.nextLine();
-    int realTPlayersnum = Integer.parseInt(TPlayersnum);
+    int realTPlayersnum = 0;
     File myObj1 = new File("");
     while (true){
+        System.out.println("Please enter the number of players");
+        String TPlayersnum = myObj.nextLine();
+        realTPlayersnum = Integer.parseInt(TPlayersnum);
+        boolean repeat = false;
         System.out.println("Please enter location of pack to load");
         String Filelocation = myObj.nextLine();
         System.out.println(Filelocation);///workspaces/Software-Development-Coursework/cardgame/Test.txt
         myObj1 = new File(Filelocation);
         int counter = 0;
         // try-with-resources: Scanner will be closed automatically
-    try (Scanner myReader = new Scanner(myObj1)) {
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            System.out.println(data);
-            counter +=1;
+        try (Scanner myReader = new Scanner(myObj1)) {
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                System.out.println(data);
+                int num = Integer.parseInt(data);
+                if (num <0){
+                    repeat = true;
+                }
+                counter +=1;
+            }
+        } 
+        catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
-    } catch (FileNotFoundException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
         //System.out.println(counter);
         if(counter == (realTPlayersnum*8))
-            break;
+            if (repeat == false){
+                break;
+            }
     }
     CardGame Current = new CardGame(realTPlayersnum,myObj1);
     Current.readcardpack();
     Current.distrubuteCards(Current);
     Thread [] ThreadList = new Thread [realTPlayersnum];  
-        for (int i = 0; i<realTPlayersnum;i++){
-            
-       ThreadList[i] = new Thread(Players[i]);
-       ThreadList[i].start();
+    for (int i = 0; i<realTPlayersnum;i++){
+        if (Players[i].CheckWin() == true){
+            Players[i].PlayerWon(i);
+        }  
+        ThreadList[i] = new Thread(Players[i]);
+        ThreadList[i].start();
 
     
     
