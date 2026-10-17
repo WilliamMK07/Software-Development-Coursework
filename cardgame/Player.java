@@ -108,9 +108,9 @@ public void run() {
         int ThreadNum = Integer.parseInt(ThreaNumString);
         //System.out.println(ThreadNum);
         int TurnCount = 0;
-        
 
         while(WinnerFound.get() == false){
+            
             // System.out.println("I'm system "+ ThreadNum);
             // if (ThreadNum == 3){
             //     System3(3);

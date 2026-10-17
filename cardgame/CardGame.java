@@ -65,7 +65,7 @@ public class CardGame{
             }
         }
     }
-    catch(Exception FileNotFoundException){
+    catch(FileNotFoundException e){
         System.out.println("No file entered");
         return(false);
     }
@@ -181,6 +181,7 @@ public static void main(String[] args) {
     while (true){
         System.out.println("Please enter location of pack to load");
         String Filelocation = myObj.nextLine();
+        System.out.println(Filelocation);///workspaces/Software-Development-Coursework/cardgame/Test.txt
         myObj1 = new File(Filelocation);
         int counter = 0;
         // try-with-resources: Scanner will be closed automatically
@@ -237,10 +238,10 @@ public static void main(String[] args) {
         }
     }
         try{
-            for( int y=0; y<realTPlayersnum;y++){
-            BufferedWriter writer = new BufferedWriter(new FileWriter(Decks[y].DeckFileName, true));
+            for( int y=0; y<TotalPlayersnum;y++){
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Decks[y].DeckFileName));
             writer.newLine();
-            writer.write(Decks[y]. printPlayerDeck());
+            writer.write(Decks[y].printPlayerDeck());
             writer.newLine();
             writer.close();
             }
@@ -251,7 +252,7 @@ public static void main(String[] args) {
         }
 
 
-    //System.out.println("Everything finished");
+    //System.out.println("Everything finished");.
     // for (int x = 0; x<ThreadList.length;x++){
     //     ThreadList[x].interrupt();
     //     System.out.println("Interrupted Thread" + x);.
