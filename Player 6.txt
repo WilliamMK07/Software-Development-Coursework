@@ -95,45 +95,9 @@ Player 6 Discards a 21 to  Deck 7
 
 Player 6 Current Hand:  6 6 17 1
 
-Player 6 Discards a 1 to  Deck 7
 
- Player 6 Draws a 8 from Deck 6
+Player 3 Wins
 
-Player 6 Current Hand:  6 6 17 8
-
-Player 6 Discards a 17 to  Deck 7
-
- Player 6 Draws a 15 from Deck 6
-
-Player 6 Current Hand:  6 6 15 8
-
-Player 6 Discards a 8 to  Deck 7
-
- Player 6 Draws a 16 from Deck 6
-
-Player 6 Current Hand:  6 6 15 16
-
-Player 6 Discards a 15 to  Deck 7
-
- Player 6 Draws a 1 from Deck 6
-
-Player 6 Current Hand:  6 6 1 16
-
-Player 6 Discards a 16 to  Deck 7
-
- Player 6 Draws a 16 from Deck 6
-
-Player 6 Current Hand:  6 6 1 16
-
-Player 6 Discards a 1 to  Deck 7
-
- Player 6 Draws a 15 from Deck 6
-
-Player 6 Current Hand:  6 6 15 16
-
-
-Player 4 informs player 6 that Player 4 has won. 
+Player 3 informs player 6 that Player 3 has won. 
 Player 6 Exits
-Player 4 Wins
-
-Final Hand: Player 6 Current Hand:  6 6 15 16
+Final Hand: Player 6 Current Hand:  6 6 17 1

@@ -214,7 +214,7 @@ public static void main(String[] args) {
     Thread [] ThreadList = new Thread [realTPlayersnum];  
     for (int i = 0; i<realTPlayersnum;i++){
         if (Players[i].CheckWin() == true){
-            Players[i].PlayerWon(i);
+            Players[i].PlayerWon(i+1);
         }  
         ThreadList[i] = new Thread(Players[i]);
         ThreadList[i].start();
@@ -274,3 +274,4 @@ public static void main(String[] args) {
 
 
     
+

@@ -20,7 +20,7 @@ public class Player implements Runnable{
     
      
     
-    public Player(int Pnum,CardGame Current){
+    public Player(int Pnum,CardGame Current) {
         
         this.PlayerNum = Pnum;
         this.Hand = new Card[4];
@@ -97,7 +97,6 @@ public class Player implements Runnable{
 
     }
     public synchronized void PlayerWon(int WinnerPlayerNum){
-        WinnerPlayerNum+=1;
         System.out.println("Player "+ WinnerPlayerNum + " Wins ");
         Winnernum.set(WinnerPlayerNum);       
         wakeWaitingthreads();
@@ -127,9 +126,9 @@ public class Player implements Runnable{
 public void run() {
         System.out.println(Thread.currentThread());
         String ThreadName = Thread.currentThread().getName();
-        System.out.println(ThreadName);
-        String ThreaNumString = ThreadName.substring(7);
-        int ThreadNum = Integer.parseInt(ThreaNumString);
+        // System.out.println(ThreadName);
+        // String ThreaNumString = ThreadName.substring(7);
+        int ThreadNum = this.PlayerNum-1;
         //System.out.println(ThreadNum);
         int TurnCount = 0;
         if(CheckWin() == true){

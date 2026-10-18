@@ -83,45 +83,9 @@ Player 5 Discards a 15 to  Deck 6
 
 Player 5 Current Hand:  5 5 1 16
 
-Player 5 Discards a 16 to  Deck 6
 
- Player 5 Draws a 16 from Deck 5
-
-Player 5 Current Hand:  5 5 1 16
-
-Player 5 Discards a 1 to  Deck 6
-
- Player 5 Draws a 15 from Deck 5
-
-Player 5 Current Hand:  5 5 15 16
-
-Player 5 Discards a 16 to  Deck 6
-
- Player 5 Draws a 8 from Deck 5
-
-Player 5 Current Hand:  5 5 15 8
-
-Player 5 Discards a 15 to  Deck 6
-
- Player 5 Draws a 14 from Deck 5
-
-Player 5 Current Hand:  5 5 14 8
-
-Player 5 Discards a 8 to  Deck 6
-
- Player 5 Draws a 15 from Deck 5
-
-Player 5 Current Hand:  5 5 14 15
-
-Player 5 Discards a 14 to  Deck 6
-
- Player 5 Draws a 7 from Deck 5
-
-Player 5 Current Hand:  5 5 7 15
-
-
-Player 4 Wins
+Player 3 Wins
 
 Player 3 informs player 5 that Player 3 has won. 
 Player 5 Exits
-Final Hand: Player 5 Current Hand:  5 5 7 15
+Final Hand: Player 5 Current Hand:  5 5 1 16

@@ -137,9 +137,15 @@ Player 8 Discards a 19 to  Deck 1
 
 Player 8 Current Hand:  2 2 8 21
 
+Player 8 Discards a 21 to  Deck 1
+
+ Player 8 Draws a 16 from Deck 8
+
+Player 8 Current Hand:  2 2 8 16
+
+
+Player 3 Wins
 
 Player 3 informs player 8 that Player 3 has won. 
 Player 8 Exits
-Player 4 Wins
-
-Final Hand: Player 8 Current Hand:  2 2 8 21
+Final Hand: Player 8 Current Hand:  2 2 8 16
