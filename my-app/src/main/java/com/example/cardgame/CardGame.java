@@ -1,4 +1,4 @@
-package cardgame;
+package com.example.cardgame;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;

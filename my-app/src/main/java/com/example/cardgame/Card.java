@@ -1,4 +1,4 @@
-package cardgame;
+package com.example.cardgame;
 public class Card{
     private int Value;
     private int TurnsHeld;

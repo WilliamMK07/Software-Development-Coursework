@@ -1,4 +1,4 @@
-package cardgame;
+package  com.example.cardgame;
 
 
 import static org.junit.Assert.assertEquals;

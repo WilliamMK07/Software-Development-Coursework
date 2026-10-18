@@ -1,2 +1,2 @@
 
-deck2 contents: 14 18
+deck2 contents: 7 12 16 2 6 7

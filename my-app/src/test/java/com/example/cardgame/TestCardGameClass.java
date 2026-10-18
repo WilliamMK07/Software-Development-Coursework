@@ -1,20 +1,25 @@
-package cardgame;
+package com.example.cardgame;
 
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
-
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.*;
 
 public class TestCardGameClass {
     CardGame TestCardGame;
     CardGame IncorrectfileCardGame;
     int TestPlayerNum;
+    File TestFile;
     @Before 
-    public void TestnewCardGame(){
-        File TestFile = new File("Test.txt");
+    public void TestnewCardGame() throws Exception{
+        File TestFile = new File( getClass().getResource("/Test.txt").toURI());
+    
+
         File IncorrectFile = new File("sfs");
         this.TestPlayerNum = 4;
         this.TestCardGame = new CardGame(TestPlayerNum,TestFile);
@@ -53,7 +58,7 @@ public class TestCardGameClass {
 
     @Test 
     public void TestPlayersTurn(){
-        File TestFile = new File("Test.txt");
+        
         CardGame NewGame = new CardGame(this.TestPlayerNum,TestFile);
         for (int i = 0 ; i<(NewGame.Players.length);i++){
             NewGame.Players[i] = new Player(i+1,NewGame);
@@ -85,7 +90,6 @@ public class TestCardGameClass {
 
     }
     @Test public void TestHandhasfour(){
-        File TestFile = new File("Test.txt");
         CardGame NewGame2 = new CardGame(this.TestPlayerNum,TestFile);
         for (int i = 0 ; i<(NewGame2.Players.length);i++){
             NewGame2.Players[i] = new Player(i+1,NewGame2);
