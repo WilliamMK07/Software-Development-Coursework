@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.example.cardgame.TestDeckClass" time="0.004" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.example.cardgame.TestDeckClass" time="0.005" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -11,7 +11,7 @@
     <property name="java.vm.specification.version" value="25"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/local/sdkman/candidates/java/25.0.4+1-ms/lib"/>
-    <property name="sun.java.command" value="/workspaces/Software-Development-Coursework/my-app/target/surefire/surefirebooter-20261019212321762_3.jar /workspaces/Software-Development-Coursework/my-app/target/surefire 2026-10-19T21-23-21_576-jvmRun1 surefire-20261019212321762_1tmp surefire_0-20261019212321762_2tmp"/>
+    <property name="sun.java.command" value="/workspaces/Software-Development-Coursework/my-app/target/surefire/surefirebooter-20261019225223865_3.jar /workspaces/Software-Development-Coursework/my-app/target/surefire 2026-10-19T22-52-23_704-jvmRun1 surefire-20261019225223865_1tmp surefire_0-20261019225223865_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/workspaces/Software-Development-Coursework/my-app/target/test-classes:/workspaces/Software-Development-Coursework/my-app/target/classes:/home/codespace/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/codespace/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -26,7 +26,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/workspaces/Software-Development-Coursework/my-app/target/surefire/surefirebooter-20261019212321762_3.jar"/>
+    <property name="surefire.real.class.path" value="/workspaces/Software-Development-Coursework/my-app/target/surefire/surefirebooter-20261019225223865_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.4.1+1-LTS"/>
     <property name="user.name" value="codespace"/>
@@ -55,7 +55,7 @@
     <property name="java.class.version" value="69.0"/>
   </properties>
   <testcase name="Testaddnewcard" classname="com.example.cardgame.TestDeckClass" time="0.0"/>
-  <testcase name="testCheckDeckOutsideofgameloop" classname="com.example.cardgame.TestDeckClass" time="0.003">
+  <testcase name="testCheckDeckOutsideofgameloop" classname="com.example.cardgame.TestDeckClass" time="0.005">
     <system-out><![CDATA[true
 ]]></system-out>
   </testcase>

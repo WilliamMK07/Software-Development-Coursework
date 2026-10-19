@@ -1,0 +1,73 @@
+Intial Hand:  Player 2 Current Hand:  3 9 7 4
+Player 2 Discards a 3 to  Deck 3
+
+ Player 2 Draws a 1 from Deck 2
+
+Player 2 Current Hand:  1 9 7 4
+
+Player 2 Discards a 9 to  Deck 3
+
+ Player 2 Draws a 12 from Deck 2
+
+Player 2 Current Hand:  1 12 7 4
+
+Player 2 Discards a 7 to  Deck 3
+
+ Player 2 Draws a 14 from Deck 2
+
+Player 2 Current Hand:  1 12 14 4
+
+Player 2 Discards a 4 to  Deck 3
+
+ Player 2 Draws a 18 from Deck 2
+
+Player 2 Current Hand:  1 12 14 18
+
+Player 2 Discards a 1 to  Deck 3
+
+ Player 2 Draws a 8 from Deck 2
+
+Player 2 Current Hand:  8 12 14 18
+
+Player 2 Discards a 12 to  Deck 3
+
+ Player 2 Draws a 4 from Deck 2
+
+Player 2 Current Hand:  8 4 14 18
+
+Player 2 Discards a 14 to  Deck 3
+
+ Player 2 Draws a 4 from Deck 2
+
+Player 2 Current Hand:  8 4 4 18
+
+Player 2 Discards a 18 to  Deck 3
+
+ Player 2 Draws a 2 from Deck 2
+
+Player 2 Current Hand:  8 4 4 2
+
+Player 2 Discards a 8 to  Deck 3
+
+ Player 2 Draws a 2 from Deck 2
+
+Player 2 Current Hand:  2 4 4 2
+
+Player 2 Discards a 4 to  Deck 3
+
+ Player 2 Draws a 13 from Deck 2
+
+Player 2 Current Hand:  2 13 4 2
+
+Player 2 Discards a 4 to  Deck 3
+
+ Player 2 Draws a 17 from Deck 2
+
+Player 2 Current Hand:  2 13 17 2
+
+
+Player 1 Wins
+
+Player 1 informs player 2 that Player 1 has won. 
+Player 2 Exits
+Final Hand: Player 2 Current Hand:  2 13 17 2

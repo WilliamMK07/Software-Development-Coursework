@@ -8,7 +8,7 @@ import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.junit.Before;
 import org.junit.Test;
-
+import org.junit.After;
 
 public class TestCardGameClass {
     CardGame TestCardGame;
@@ -256,7 +256,7 @@ public class TestCardGameClass {
     }
     
     
-    @After 
+@After 
 public void TestCearUp(){
      int PlayerNum = 1;
       
