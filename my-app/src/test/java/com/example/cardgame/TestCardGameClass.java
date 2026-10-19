@@ -40,6 +40,7 @@ public class TestCardGameClass {
     public void TestReadCardFile(){ 
         assertTrue(this.TestCardGame.readcardpack()); //tests that the card game with the correct "TestFile" successfully reads it.
     } 
+    
     @Test 
     public void Incorrectfile(){
     assertFalse(this.IncorrectfileCardGame.readcardpack()); //test that a false boolean is returned when trying to read 

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -175,9 +176,19 @@ public static void main(String[] args) {
     int realTPlayersnum = 0;
     File myObj1 = new File("");
     while (true){
-        System.out.println("Please enter the number of players"); 
+        while (true){
+        System.out.println("Please enter the number of players");
+        try{ 
         String TPlayersnum = myObj.nextLine(); //takes the 
         realTPlayersnum = Integer.parseInt(TPlayersnum); //turns the player number input into a Integer
+        }
+        catch (NumberFormatException e){
+            System.out.println("Incorrect type please enter a whole number");
+        }
+            if (realTPlayersnum >0){
+                break;
+            }
+        }
         boolean repeat = false;
         System.out.println("Please enter location of pack to load");
         String Filelocation = myObj.nextLine(); //takes the input of the file location as a string.
