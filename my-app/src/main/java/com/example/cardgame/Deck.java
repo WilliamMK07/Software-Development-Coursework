@@ -12,12 +12,13 @@ public class Deck {
 
     public Deck (int DeckNum, int TotalPlayers){
         this.DeckNum = DeckNum;
-        this.DeckLength = (8*TotalPlayers);
+        this.DeckLength = (4*TotalPlayers); 
         this.DeckQueue = new Card [DeckLength];
-        this.Start = 0;
-        this.End = 0;
-        this.DeckFileName = "Deck " + DeckNum + ".txt";
-        this.Deckfile = new File(this.DeckFileName);
+        this.Start = 0; //points to the front card in the list 
+        this.End = 0; // points to the last card/most recently added card
+        this.DeckFileName = "Deck " + DeckNum + ".txt"; // used for the buffrered file writer 
+        // for writing to the deck output files
+        this.Deckfile = new File(this.DeckFileName); // creating a File with the correspondent deck number to its contents
         
         
     }
@@ -27,59 +28,32 @@ public class Deck {
 
 
 
-        this.DeckQueue[End] = NewCard;
-        this.Decksize += 1;
-        End = (End + 1) % DeckLength;
-        // System.out.println("notifying that Player" + DeckNum + " can play again");
+        this.DeckQueue[End] = NewCard; //sets the inputted card to the end position of the deck
+        this.Decksize += 1; // card has been added to the deck size increments 
+        End = (End + 1) % DeckLength; // if it reaches the end of the deck the end pointer raps around to the front.
+        notify(); //wakes up the player who is to draw from current deck 
         
-        notify();
-        
-        // if (End == DeckLength-1){
-        //     End = 0;
-        // }
-        // else{
-        //     this.End +=1;
-        // }
     }
     public synchronized boolean CheckDeck(){
-        int PNum =DeckNum+1;
-        // System.out.println("Player " + PNum + " is checking deck it is size "+ this.Decksize);
-        if (this.Decksize == 0){
-
-
+        if (this.Decksize == 0){ //if the deck is currently empty 
             try{
-                // System.out.println("Player" + PNum + " can no longer go as the deck is empty so is being frozen out");
-                wait();
-                // System.out.println("Player " + PNum + " is now awake");
+                
+                wait(); //freeze the deck waiting on the player to draw a card out of it to avoid an error and making 
+                
             }
             catch(InterruptedException e) {}
-            if (CardGame.Players[DeckNum-1].IsWinnerFound() == true)//potential error
+            if (CardGame.Players[DeckNum-1].IsWinnerFound() == true)// stops the Deck from adding a 
                 return false;
         }
-        return true;
+        return true; //
     
     }
-    public synchronized Card removeCardFromDeck(){
-        Card PassedCard = this.DeckQueue[Start];
+    public synchronized Card removeCardFromDeck(){ //all methods synchronized to avoid race conditions when threads access the decks
+        Card PassedCard = this.DeckQueue[Start]; // gets the card 
         this.DeckQueue[Start] = null;
-        this.Decksize -= 1;
-        Start = (Start + 1) % DeckLength;
-        // int Check = 0;
-        // if (Start == (this.DeckLength-1)){
-        //     Check = 0;
-        // }
-        // else {
-        //      Check = Start+1;
-        // }
-        // if (this.DeckQueue[Check] != null ){
-        //     Start = Check;
-        // }
-        // else{
-        //     Start = 0;
-        // }
-        //System.out.println(this.DeckNum +" I'm removing card "+ PassedCard.getValue()+" To be added to hand");
-        
-        return PassedCard;
+        this.Decksize -= 1; // card removed 
+        Start = (Start + 1) % DeckLength; // resets the pointer if the decks start point reaches the end of deck
+        return PassedCard; //return
     }
     public synchronized String printPlayerDeck(){
         String Message = "deck"+this.DeckNum+" contents:";

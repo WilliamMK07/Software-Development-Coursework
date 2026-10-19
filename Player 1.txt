@@ -77,32 +77,9 @@ Player 1 Discards a 12 to  Deck 2
 
 Player 1 Current Hand:  1 1 16 2
 
-Player 1 Discards a 16 to  Deck 2
 
- Player 1 Draws a 6 from Deck 1
-
-Player 1 Current Hand:  1 1 6 2
-
-Player 1 Discards a 2 to  Deck 2
-
- Player 1 Draws a 7 from Deck 1
-
-Player 1 Current Hand:  1 1 6 7
-
-Player 1 Discards a 6 to  Deck 2
-
- Player 1 Draws a 1 from Deck 1
-
-Player 1 Current Hand:  1 1 1 7
-
-Player 1 Discards a 7 to  Deck 2
-
- Player 1 Draws a 1 from Deck 1
-
-Player 1 Current Hand:  1 1 1 1
-
-
-Player 1 Wins
-
+Player 4 informs player 1 that Player 4 has won. 
 Player 1 Exits
-Final Hand: Player 1 Current Hand:  1 1 1 1
+Player 4 Wins
+
+Final Hand: Player 1 Current Hand:  1 1 16 2

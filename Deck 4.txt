@@ -1,2 +1,2 @@
 
-deck4 contents: 18 8 4 4
+deck4 contents: 13

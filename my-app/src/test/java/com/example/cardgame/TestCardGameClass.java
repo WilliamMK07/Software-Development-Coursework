@@ -6,16 +6,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.*;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertTrue;
 
 public class TestCardGameClass {
     CardGame TestCardGame;
@@ -29,32 +22,32 @@ public class TestCardGameClass {
     File IncorrectNegativeNumberFile;
     @Before 
     public void TestnewCardGame() throws Exception{
-        File TestFile = new File( getClass().getResource("/Test.txt").toURI());
+        File TestFile = new File( getClass().getResource("/Test.txt").toURI()); //Getting test files located in the resource file in the test folder 
+        // to be used specifically for the tests and saving them as file objects
         File TestFile3 = new File( getClass().getResource("/Test3.txt").toURI());
         File NoWinFile = new File( getClass().getResource("/NoWin.txt").toURI());
         File IncorrectNegativeNumberFile= new File( getClass().getResource("/IncorrectNegativeNumber.txt").toURI());
 
 
-        File IncorrectFile = new File("sfs");
-        this.TestPlayerNum = 4;
+        File IncorrectFile = new File("sfs"); //invalid file being created to test 
+        this.TestPlayerNum = 4; 
         this.TestCardGame = new CardGame(TestPlayerNum,TestFile);
         this.IncorrectfileCardGame = new CardGame(TestPlayerNum,IncorrectFile);
         this.IncorrectNegativeNumberFileCG = new CardGame(TestPlayerNum, IncorrectNegativeNumberFile);
         this.NoWinCG = new CardGame(TestPlayerNum,NoWinFile);
     }
     @Test 
-    public void TestReadCardFile(){
-        assertTrue(this.TestCardGame.readcardpack());
+    public void TestReadCardFile(){ 
+        assertTrue(this.TestCardGame.readcardpack()); //tests that the card game with the correct "TestFile" successfully reads it.
     } 
     @Test 
     public void Incorrectfile(){
-    assertFalse(this.IncorrectfileCardGame.readcardpack());
+    assertFalse(this.IncorrectfileCardGame.readcardpack()); //test that a false boolean is returned when trying to read 
  
-    assertFalse(this.IncorrectfileCardGame.readcardpack());
     }
     @Test 
     public void TestFilewithNegativeCardNumbers(){
-        assertFalse(this.IncorrectNegativeNumberFileCG.readcardpack());
+        assertFalse(this.IncorrectNegativeNumberFileCG.readcardpack()); //test that a file with a negative card value is rejected and returns false.
     }
     @Test 
     public void TestGetTotalPlayers(){
@@ -111,7 +104,7 @@ public class TestCardGameClass {
 
     }
     @Test public void TestHandhasfour(){
-        CardGame NewGame2 = new CardGame(this.TestPlayerNum,TestFile);
+        CardGame NewGame2 = new CardGame(this.TestPlayerNum,TestFile); 
         for (int i = 0 ; i<(NewGame2.Players.length);i++){
             NewGame2.Players[i] = new Player(i+1,NewGame2);
             NewGame2.Decks[i] = new Deck(i+1,this.TestPlayerNum);
@@ -250,7 +243,6 @@ public class TestCardGameClass {
                 
             }
         String winningHandOfNonPrefaredNumber = "Player 1 Current Hand:  5 5 5 5";
-        String losingUnchangedHandOfTheOther ="Player 2 Current Hand:  1 2 3 4";
         System.out.println(NewGame3.Players[0].showCurrentPlayerHand());
         System.out.println(NewGame3.Players[1].showCurrentPlayerHand());
 

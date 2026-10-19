@@ -95,9 +95,15 @@ Player 3 Discards a 4 to  Deck 4
 
 Player 3 Current Hand:  13 3 3 3
 
+Player 3 Discards a 13 to  Deck 4
 
-Player 1 informs player 3 that Player 1 has won. 
+ Player 3 Draws a 17 from Deck 3
+
+Player 3 Current Hand:  17 3 3 3
+
+
+Player 4 Wins
+
+Player 4 informs player 3 that Player 4 has won. 
 Player 3 Exits
-Player 1 Wins
-
-Final Hand: Player 3 Current Hand:  13 3 3 3
+Final Hand: Player 3 Current Hand:  17 3 3 3

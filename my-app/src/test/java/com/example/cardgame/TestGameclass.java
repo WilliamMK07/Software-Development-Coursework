@@ -8,7 +8,6 @@ import java.io.PrintStream;
 import java.io.FileReader;
 import java.nio.charset.StandardCharsets;
 import org.junit.BeforeClass;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

@@ -1,2 +1,2 @@
 
-deck2 contents: 2 13 17 7 3 5 2 7 12 16 2 6 7
+deck2 contents: 12 16 2 6 7 17 7 3 5 2 7

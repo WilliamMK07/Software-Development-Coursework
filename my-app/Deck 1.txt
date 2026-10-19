@@ -1,2 +1,2 @@
 
-deck1 contents: 9 7 1
+deck1 contents: 9 7

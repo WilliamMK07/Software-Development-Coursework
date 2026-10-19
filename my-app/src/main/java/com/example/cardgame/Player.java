@@ -3,7 +3,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.Writer;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -13,7 +12,6 @@ public class Player implements Runnable{
     private Card [] Hand;
     private static final AtomicBoolean WinnerFound = new AtomicBoolean(false);
     private CardGame Current;
-    private int Actual_PlayerNum;
     private static final AtomicInteger Winnernum = new AtomicInteger(0);
     public File PlayerFile;
     public String Filename;

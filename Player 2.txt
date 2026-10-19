@@ -77,33 +77,9 @@ Player 2 Discards a 17 to  Deck 3
 
 Player 2 Current Hand:  2 7 3 2
 
-Player 2 Discards a 7 to  Deck 3
 
- Player 2 Draws a 5 from Deck 2
-
-Player 2 Current Hand:  2 5 3 2
-
-Player 2 Discards a 3 to  Deck 3
-
- Player 2 Draws a 2 from Deck 2
-
-Player 2 Current Hand:  2 5 2 2
-
-Player 2 Discards a 5 to  Deck 3
-
- Player 2 Draws a 7 from Deck 2
-
-Player 2 Current Hand:  2 7 2 2
-
-Player 2 Discards a 7 to  Deck 3
-
- Player 2 Draws a 12 from Deck 2
-
-Player 2 Current Hand:  2 12 2 2
-
-
-Player 1 informs player 2 that Player 1 has won. 
+Player 4 informs player 2 that Player 4 has won. 
 Player 2 Exits
-Player 1 Wins
+Player 4 Wins
 
-Final Hand: Player 2 Current Hand:  2 12 2 2
+Final Hand: Player 2 Current Hand:  2 7 3 2

@@ -1,6 +1,6 @@
 package com.example.cardgame;
 public class Card{
-    private int Value;
+    private int Value; 
     private int TurnsHeld;
 
     public Card(int newvalue){
