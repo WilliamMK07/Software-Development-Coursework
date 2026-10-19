@@ -28,7 +28,7 @@ public void testIncreaseTurnsHeld(){ // calling increase turns held and checking
     assertEquals(1,TestCard.getTurnsHeld());
 }
 @Test
-public void testResetTurnsHeld(){ // resets the turns after increasing them
+public void testResetTurnsHeld(){ // resets the turns after increasing them to see it works properly
     Card TestCard = new Card(Testvalue);
     TestCard.increaseTurnsHeld();
     assertEquals(1, TestCard.getTurnsHeld());

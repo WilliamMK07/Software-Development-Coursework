@@ -55,7 +55,7 @@ public class Deck {
         Start = (Start + 1) % DeckLength; // resets the pointer if the decks start point reaches the end of deck
         return PassedCard; //return
     }
-    public synchronized String printPlayerDeck(){
+    public synchronized String printPlayerDeck(){ //looping through the deck array and adding each value to a string to return
         String Message = "deck"+this.DeckNum+" contents:";
         for (int i = 0;i<this.DeckLength ;i++){
             if ( this.DeckQueue[i] != null){

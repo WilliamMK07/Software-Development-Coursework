@@ -51,7 +51,7 @@ public class TestCardGameClass {
     }
     @Test 
     public void TestGetTotalPlayers(){
-        assertTrue(this.TestCardGame.getTotalPlayersnum() == this.TestPlayerNum);
+        assertTrue(this.TestCardGame.getTotalPlayersnum() == this.TestPlayerNum); 
     }
     @Test
     public void Testdistrubute(){
@@ -61,8 +61,8 @@ public class TestCardGameClass {
         System.out.println(this.TestCardGame.Players[0].showCurrentPlayerHand());
         assertTrue(this.TestCardGame.Players[0].showCurrentPlayerHand().equals(TestHandstring));
         for(int t = 0; t<this.TestPlayerNum;t++){
-            assertTrue(this.TestCardGame.Players[t] != null);
-            assertTrue(this.TestCardGame.Players[t].getHand().length == 4);
+            assertTrue(this.TestCardGame.Players[t] != null); // test the players are still
+            assertTrue(this.TestCardGame.Players[t].getHand().length == 4); //testing the hand length of each player is equal to four
 
             assertTrue(this.TestCardGame.Decks[t].getDecksize() == 4);// 4 cards in each deck at start of game
             //assertTrue(this.TestCardGame.Decks[t][0] != null); 
@@ -73,21 +73,21 @@ public class TestCardGameClass {
     @Test 
     public void TestPlayersTurn(){
         
-        CardGame NewGame = new CardGame(this.TestPlayerNum,TestFile);
+        CardGame NewGame = new CardGame(this.TestPlayerNum,TestFile); 
         for (int i = 0 ; i<(NewGame.Players.length);i++){
             NewGame.Players[i] = new Player(i+1,NewGame);
             NewGame.Decks[i] = new Deck(i+1,this.TestPlayerNum);
             System.out.println(NewGame.Decks[i].printPlayerDeck());
         }
         assertTrue(NewGame.Players[0].isHandEmpty()); // checks hand is empty before adding cards
-        NewGame.Players[0].addCardToHand(new Card(1));
+        NewGame.Players[0].addCardToHand(new Card(1)); // adding a hand to the first player
         NewGame.Players[0].addCardToHand(new Card(2));
         NewGame.Players[0].addCardToHand(new Card(2));
         NewGame.Players[0].addCardToHand(new Card(3));
-        assertTrue(NewGame.Decks[0].isEmpty()); // proves deck begins empty
+        assertTrue(NewGame.Decks[0].isEmpty()); // proves deck begins empty 
         NewGame.Decks[0].addCardToDeck(new Card(4));
         assertTrue(NewGame.Decks[1].isEmpty()); // proves deck 2 is empty
-        AtomicBoolean Winner = new AtomicBoolean(false);
+        AtomicBoolean Winner = new AtomicBoolean(false); // sets up a winner boolean for when one of the players win
         NewGame.PlayersTurn(0, Winner);
         assertFalse(NewGame.Decks[1].isEmpty()); // proves after players turn deck 2 has got a card in it now
         System.out.println(NewGame.Decks[1].printPlayerDeck());
@@ -98,14 +98,14 @@ public class TestCardGameClass {
 
         // Testing that it removes the card with the heighest turns held
 
-        NewGame.Decks[0].addCardToDeck(new Card(1)); // add new card to deck
-        NewGame.PlayersTurn(0,Winner);
+        NewGame.Decks[0].addCardToDeck(new Card(1)); // add new card to deck 1 to make sure the players have a card to pick up
+        NewGame.PlayersTurn(0,Winner); // start the first players turn
         assertTrue(NewGame.Players[0].showCurrentPlayerHand().equals("Player 1 Current Hand:  1 4 1 3")); // this shows it chose to remove the 2 over 4 based off of turnsheld
 
     }
     @Test public void TestHandhasfour(){
         CardGame NewGame2 = new CardGame(this.TestPlayerNum,TestFile); 
-        for (int i = 0 ; i<(NewGame2.Players.length);i++){
+        for (int i = 0 ; i<(NewGame2.Players.length);i++){ // setting up 
             NewGame2.Players[i] = new Player(i+1,NewGame2);
             NewGame2.Decks[i] = new Deck(i+1,this.TestPlayerNum);
             System.out.println(NewGame2.Decks[i].printPlayerDeck());
@@ -117,6 +117,9 @@ public class TestCardGameClass {
             NewGame2.Decks[0].addCardToDeck(new Card(1)); // add new card to deck
         }
         AtomicBoolean Winner = new AtomicBoolean(false);
+        // this block of testing traces the first player picking up 1s and discarding non prefered cards it shows
+        // that the turns held is working by removing 2 first then 3 then 4 
+        // as if they have equal turns held it defaults to left to right
         assertTrue(NewGame2.Players[0].showCurrentPlayerHand().equals("Player 1 Current Hand:  1 2 3 4"));
         assertTrue(NewGame2.Decks[0].printPlayerDeck().equals("deck1 contents: 1 1 1 1"));
         assertTrue(NewGame2.Decks[1].printPlayerDeck().equals("deck2 contents:"));
@@ -139,7 +142,8 @@ public class TestCardGameClass {
     
 
     @Test
-    public void TestThread(){
+    public void TestThread(){ 
+        // sets up threads and players asnd decks 
         int PlayerCount = 2;
         CardGame NewGame2 = new CardGame(PlayerCount,TestFile3);
         System.out.println((NewGame2.Players.length)+"WEEEEEEEEEEEEEEEEEEEEE");
@@ -177,11 +181,11 @@ public class TestCardGameClass {
     
         }
 
-        System.out.println(NewGame2.Players[0].IsWinnerFound()+"AAAAAAAAAAAAAAAAAAAA");
         assertTrue(NewGame2.Players[0].IsWinnerFound());
 
     }
-    @Test public void conservationofCards(){
+    @Test public void conservationofCards(){// sets up a game with 4 players 
+    // and counts the cards in decks and hands to show cards are not lost with the threading.
         int NoWinPlay = 4;
         for(int i =0; i<NoWinPlay;i++){
             this.NoWinCG.Players[i] = new Player(i+1,this.NoWinCG);
@@ -211,6 +215,7 @@ public class TestCardGameClass {
     }
     @Test 
     public void Earlywin(){
+        //sets up game enviroment the same way as thread test
         int TestPlayerNum2 = 2;
         CardGame NewGame3 = new CardGame(TestPlayerNum2,TestFile);
         for (int i = 0 ; i<(NewGame3.Players.length);i++){
@@ -218,18 +223,18 @@ public class TestCardGameClass {
             NewGame3.Decks[i] = new Deck(i+1,TestPlayerNum2);
         }
         for (int e =1;e<5;e++){
-            NewGame3.Players[0].addCardToHand(new Card(5));
+            NewGame3.Players[0].addCardToHand(new Card(5)); // gives player one a winning hand at the start
             NewGame3.Players[1].addCardToHand(new Card(e));
             NewGame3.Decks[0].addCardToDeck(new Card(e));
             NewGame3.Decks[1].addCardToDeck(new Card(e));
         }
-        Thread [] ThreadList = new Thread [TestPlayerNum2];  
+        Thread [] ThreadList = new Thread [TestPlayerNum2]; // makes the threads to play the game
         
         for (int y= 0; y<TestPlayerNum2;y++){
-            if (NewGame3.Players[y].CheckWin() == true){
+            if (NewGame3.Players[y].CheckWin() == true){ // checking whether a player has already won which they should have
                 NewGame3.Players[y].PlayerWon(y);
             }  
-            ThreadList[y] = new Thread(NewGame3.Players[y]);
+            ThreadList[y] = new Thread(NewGame3.Players[y]); // makes the threads to play the game
             ThreadList[y].start();
 
     
@@ -242,12 +247,10 @@ public class TestCardGameClass {
             catch(InterruptedException e){
                 
             }
-        String winningHandOfNonPrefaredNumber = "Player 1 Current Hand:  5 5 5 5";
-        System.out.println(NewGame3.Players[0].showCurrentPlayerHand());
-        System.out.println(NewGame3.Players[1].showCurrentPlayerHand());
+        String winningHandOfNonPrefaredNumber = "Player 1 Current Hand:  5 5 5 5"; //what player one should have 
 
-        assertEquals(winningHandOfNonPrefaredNumber,NewGame3.Players[0].showCurrentPlayerHand());
-        assertTrue(NewGame3.Players[0].IsWinnerFound() == true && NewGame3.Players[1].IsWinnerFound() == true);
+        assertEquals(winningHandOfNonPrefaredNumber,NewGame3.Players[0].showCurrentPlayerHand()); //checks the player hasnt made any turns
+        assertTrue(NewGame3.Players[0].IsWinnerFound() == true && NewGame3.Players[1].IsWinnerFound() == true); // checks that both player know a player has been found
         }
     }
     
