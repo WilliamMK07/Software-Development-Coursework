@@ -13,6 +13,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
 public class TestGameclass {
+
     static String ResourcesLoc = "/src/test/resources";
     static int PlayerCount =4;
     static String [] PlayerFileArray ;
@@ -21,6 +22,26 @@ public class TestGameclass {
 
     @BeforeClass
     public static void setupGame() throws Exception {
+        int PlayerNum = 1;
+      // this removes any pre existin player files
+        while (true){
+            String Pfname = "Player "+PlayerNum+".txt";
+            String Dfname = "Deck "+PlayerNum+".txt";
+            System.out.println("I am tryin "+Pfname);
+            File f = new File(Pfname);
+            File Df = new File(Dfname);
+            if (f.exists()){
+                System.out.println("Iworked");
+                f.delete();
+                Df.delete();
+                PlayerNum +=1;
+            }
+            else{
+                break;
+            }
+
+
+        }
 
         InputStream originalIn = System.in;
         PrintStream originalOut = System.out;

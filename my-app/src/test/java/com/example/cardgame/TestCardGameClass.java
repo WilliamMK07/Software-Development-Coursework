@@ -256,7 +256,29 @@ public class TestCardGameClass {
     }
     
     
-    
+    @After 
+public void TestCearUp(){
+     int PlayerNum = 1;
+      
+        while (true){
+            String Pfname = "Player "+PlayerNum+".txt";
+            String Dfname = "Deck "+PlayerNum+".txt";
+            System.out.println("I am tryin "+Pfname);
+            File f = new File(Pfname);
+            File Df = new File(Dfname);
+            if (f.exists()){
+                System.out.println("Iworked");
+                f.delete();
+                Df.delete();
+                PlayerNum +=1;
+            }
+            else{
+                break;
+            }
+
+
+        }
+}
         
         
 
