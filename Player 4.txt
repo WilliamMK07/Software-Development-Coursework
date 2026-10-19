@@ -1,79 +1,103 @@
-Intial Hand:  Player 4 Current Hand:  8 4 16 18
-Player 4 Discards a 8 to  Deck 5
+Intial Hand:  Player 4 Current Hand:  7 3 5 2
+Player 4 Discards a 7 to  Deck 1
+
+ Player 4 Draws a 7 from Deck 4
+
+Player 4 Current Hand:  7 3 5 2
+
+Player 4 Discards a 3 to  Deck 1
+
+ Player 4 Draws a 12 from Deck 4
+
+Player 4 Current Hand:  7 12 5 2
+
+Player 4 Discards a 5 to  Deck 1
+
+ Player 4 Draws a 16 from Deck 4
+
+Player 4 Current Hand:  7 12 16 2
+
+Player 4 Discards a 2 to  Deck 1
+
+ Player 4 Draws a 2 from Deck 4
+
+Player 4 Current Hand:  7 12 16 2
+
+Player 4 Discards a 7 to  Deck 1
 
  Player 4 Draws a 4 from Deck 4
 
-Player 4 Current Hand:  4 4 16 18
+Player 4 Current Hand:  4 12 16 2
 
-Player 4 Discards a 16 to  Deck 5
-
- Player 4 Draws a 21 from Deck 4
-
-Player 4 Current Hand:  4 4 21 18
-
-Player 4 Discards a 18 to  Deck 5
+Player 4 Discards a 12 to  Deck 1
 
  Player 4 Draws a 1 from Deck 4
 
-Player 4 Current Hand:  4 4 21 1
+Player 4 Current Hand:  4 1 16 2
 
-Player 4 Discards a 21 to  Deck 5
+Player 4 Discards a 16 to  Deck 1
 
- Player 4 Draws a 17 from Deck 4
+ Player 4 Draws a 6 from Deck 4
 
-Player 4 Current Hand:  4 4 17 1
+Player 4 Current Hand:  4 1 6 2
 
-Player 4 Discards a 1 to  Deck 5
+Player 4 Discards a 2 to  Deck 1
 
- Player 4 Draws a 8 from Deck 4
+ Player 4 Draws a 7 from Deck 4
 
-Player 4 Current Hand:  4 4 17 8
+Player 4 Current Hand:  4 1 6 7
 
-Player 4 Discards a 17 to  Deck 5
-
- Player 4 Draws a 15 from Deck 4
-
-Player 4 Current Hand:  4 4 15 8
-
-Player 4 Discards a 8 to  Deck 5
-
- Player 4 Draws a 16 from Deck 4
-
-Player 4 Current Hand:  4 4 15 16
-
-Player 4 Discards a 15 to  Deck 5
+Player 4 Discards a 1 to  Deck 1
 
  Player 4 Draws a 1 from Deck 4
 
-Player 4 Current Hand:  4 4 1 16
+Player 4 Current Hand:  4 1 6 7
 
-Player 4 Discards a 16 to  Deck 5
+Player 4 Discards a 6 to  Deck 1
 
- Player 4 Draws a 16 from Deck 4
+ Player 4 Draws a 1 from Deck 4
 
-Player 4 Current Hand:  4 4 1 16
+Player 4 Current Hand:  4 1 1 7
 
-Player 4 Discards a 1 to  Deck 5
+Player 4 Discards a 7 to  Deck 1
 
- Player 4 Draws a 15 from Deck 4
+ Player 4 Draws a 9 from Deck 4
 
-Player 4 Current Hand:  4 4 15 16
+Player 4 Current Hand:  4 1 1 9
 
-Player 4 Discards a 16 to  Deck 5
+Player 4 Discards a 1 to  Deck 1
 
- Player 4 Draws a 8 from Deck 4
+ Player 4 Draws a 7 from Deck 4
 
-Player 4 Current Hand:  4 4 15 8
+Player 4 Current Hand:  4 7 1 9
 
-Player 4 Discards a 15 to  Deck 5
+Player 4 Discards a 1 to  Deck 1
+
+ Player 4 Draws a 4 from Deck 4
+
+Player 4 Current Hand:  4 7 4 9
+
+Player 4 Discards a 9 to  Deck 1
+
+ Player 4 Draws a 1 from Deck 4
+
+Player 4 Current Hand:  4 7 4 1
+
+Player 4 Discards a 7 to  Deck 1
+
+ Player 4 Draws a 12 from Deck 4
+
+Player 4 Current Hand:  4 12 4 1
+
+Player 4 Discards a 1 to  Deck 1
 
  Player 4 Draws a 14 from Deck 4
 
-Player 4 Current Hand:  4 4 14 8
+Player 4 Current Hand:  4 12 4 14
 
 
-Player 3 Wins
-
-Player 3 informs player 4 that Player 3 has won. 
+Player 1 informs player 4 that Player 1 has won. 
 Player 4 Exits
-Final Hand: Player 4 Current Hand:  4 4 14 8
+Player 1 Wins
+
+Final Hand: Player 4 Current Hand:  4 12 4 14
