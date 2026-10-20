@@ -6,7 +6,8 @@ A modern maven version which is downloaded for example maven 3.9 or 3.10 but not
 
 JUnit 4.13.2 version as supplied by the jav files in the test directory inside the my-app directory. 
 
-How to run the main program: 
+How to run the main program:
+
 first you must place a suitable card pack inside the same directory as the cards.jar file. Then use cd to navigate to the main Software-Development-coursework folder then you must run the jar file inside the correct directory where it is placed using this command: java -jar cards.jar in the terminal of the IDE or computers termninal. You then enter the correct cardpack file  and number of players to run the game.
 
 How to run the testing suite:
