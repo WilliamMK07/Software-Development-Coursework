@@ -54,7 +54,9 @@ public class TestGameclass {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         //int PlayerCount = 4;
         try {
-            String input ="4\n" +TestGameclass.class.getResource("/Test.txt").getPath() + "\n";
+
+            File file = new File(TestGameclass.class.getResource("/Test.txt").toURI());
+        String input ="4\n" +file.getAbsolutePath() + "\n";
 
             System.setIn(new ByteArrayInputStream(
                 input.getBytes(StandardCharsets.UTF_8)
