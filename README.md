@@ -17,5 +17,8 @@ use this command to naviagate into my-app where the test suite can be run:
 cd my-app 
 then use this command to run the test suite which will run all the test classes:
  mvn clean test
- and the results of the test suite will be shown.
+ and the results of the test suite will be shown. It will show one error from TestGameClass.java. This is due to the static variable WinnerFound in the player class being set to true in a previous test. To run this test class independently to prove the test works type:  mvn test -Dtest=TestGameclass in the same directory. 
+ If you wanted to run the tests specifically from the test suite 
+ mvn test -Dtest=CardGameTestSuite.Java
+ 
 
