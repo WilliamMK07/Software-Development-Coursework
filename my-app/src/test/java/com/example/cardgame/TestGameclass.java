@@ -15,7 +15,9 @@ import java.io.File;
 import static org.junit.Assert.assertTrue;
 
 public class TestGameclass {
-
+    
+    File NonRealFile = new File("NotValid.txt");// creates file object - is not real and never used
+    CardGame rand = new CardGame(4,NonRealFile);// recreates cardgame to ensure no interference with other tests
     static String ResourcesLoc = "/src/test/resources";
     static int PlayerCount =4;
     static String [] PlayerFileArray ;
