@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.example.cardgame.TestCardGameClass" time="0.096" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.example.cardgame.TestCardGameClass" time="0.093" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -11,7 +11,7 @@
     <property name="java.vm.specification.version" value="25"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/local/sdkman/candidates/java/25.0.4+1-ms/lib"/>
-    <property name="sun.java.command" value="/workspaces/Software-Development-Coursework/my-app/target/surefire/surefirebooter-20261020085147443_3.jar /workspaces/Software-Development-Coursework/my-app/target/surefire 2026-10-20T08-51-47_309-jvmRun1 surefire-20261020085147443_1tmp surefire_0-20261020085147443_2tmp"/>
+    <property name="sun.java.command" value="/workspaces/Software-Development-Coursework/my-app/target/surefire/surefirebooter-20261020091910120_3.jar /workspaces/Software-Development-Coursework/my-app/target/surefire 2026-10-20T09-19-09_967-jvmRun1 surefire-20261020091910120_1tmp surefire_0-20261020091910120_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/workspaces/Software-Development-Coursework/my-app/target/test-classes:/workspaces/Software-Development-Coursework/my-app/target/classes:/home/codespace/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/home/codespace/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -26,7 +26,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/workspaces/Software-Development-Coursework/my-app/target/surefire/surefirebooter-20261020085147443_3.jar"/>
+    <property name="surefire.real.class.path" value="/workspaces/Software-Development-Coursework/my-app/target/surefire/surefirebooter-20261020091910120_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.4.1+1-LTS"/>
     <property name="user.name" value="codespace"/>
@@ -54,7 +54,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="TestGetTotalPlayers" classname="com.example.cardgame.TestCardGameClass" time="0.006">
+  <testcase name="TestGetTotalPlayers" classname="com.example.cardgame.TestCardGameClass" time="0.002">
     <system-out><![CDATA[I am tryin Player 1.txt
 Iworked
 I am tryin Player 2.txt
@@ -66,7 +66,7 @@ Iworked
 I am tryin Player 5.txt
 ]]></system-out>
   </testcase>
-  <testcase name="Incorrectfile" classname="com.example.cardgame.TestCardGameClass" time="0.006">
+  <testcase name="Incorrectfile" classname="com.example.cardgame.TestCardGameClass" time="0.003">
     <system-out><![CDATA[No file entered
 I am tryin Player 1.txt
 ]]></system-out>
@@ -75,7 +75,7 @@ I am tryin Player 1.txt
     <system-out><![CDATA[I am tryin Player 1.txt
 ]]></system-out>
   </testcase>
-  <testcase name="TestPlayersTurn" classname="com.example.cardgame.TestCardGameClass" time="0.006">
+  <testcase name="TestPlayersTurn" classname="com.example.cardgame.TestCardGameClass" time="0.001">
     <system-out><![CDATA[deck1 contents:
 deck2 contents:
 deck3 contents:
@@ -93,7 +93,7 @@ Iworked
 I am tryin Player 2.txt
 ]]></system-out>
   </testcase>
-  <testcase name="Testdistrubute" classname="com.example.cardgame.TestCardGameClass" time="0.007">
+  <testcase name="Testdistrubute" classname="com.example.cardgame.TestCardGameClass" time="0.006">
     <system-out><![CDATA[Player 0: Player 1 Current Hand:  1 8 4 4deck1 contents: 2 2 13 17
 Player 1: Player 2 Current Hand:  3 9 7 4deck2 contents: 1 12 14 18
 Player 2: Player 3 Current Hand:  4 1 6 3deck3 contents: 7 1 3 1
@@ -110,7 +110,7 @@ Iworked
 I am tryin Player 5.txt
 ]]></system-out>
   </testcase>
-  <testcase name="Earlywin" classname="com.example.cardgame.TestCardGameClass" time="0.006">
+  <testcase name="Earlywin" classname="com.example.cardgame.TestCardGameClass" time="0.011">
     <system-out><![CDATA[Player 0 Wins 
 Player 0: Player 1 Current Hand:  5 5 5 5deck1 contents: 1 2 3 4
 Player 1: Player 2 Current Hand:  1 2 3 4deck2 contents: 1 2 3 4
@@ -123,7 +123,7 @@ Iworked
 I am tryin Player 3.txt
 ]]></system-out>
   </testcase>
-  <testcase name="conservationofCards" classname="com.example.cardgame.TestCardGameClass" time="0.043">
+  <testcase name="conservationofCards" classname="com.example.cardgame.TestCardGameClass" time="0.064">
     <system-out><![CDATA[Player 0: Player 1 Current Hand:  6 5 9 55deck1 contents: 77 88 56 65
 Player 1: Player 2 Current Hand:  7 6 5 66deck2 contents: 77 88 56 78
 Player 2: Player 3 Current Hand:  8 7 6 66deck3 contents: 77 99 65 78
@@ -383,7 +383,7 @@ Iworked
 I am tryin Player 5.txt
 ]]></system-out>
   </testcase>
-  <testcase name="TestThread" classname="com.example.cardgame.TestCardGameClass" time="0.003">
+  <testcase name="TestThread" classname="com.example.cardgame.TestCardGameClass" time="0.0">
     <system-out><![CDATA[2WEEEEEEEEEEEEEEEEEEEEE
 deck1 contents:
 Player 1 Current Hand:  1 2 3 4
@@ -399,7 +399,7 @@ Iworked
 I am tryin Player 3.txt
 ]]></system-out>
   </testcase>
-  <testcase name="TestHandhasfour" classname="com.example.cardgame.TestCardGameClass" time="0.003">
+  <testcase name="TestHandhasfour" classname="com.example.cardgame.TestCardGameClass" time="0.001">
     <system-out><![CDATA[deck1 contents:
 Player 1 Current Hand:  1 2 3 4
 deck2 contents:

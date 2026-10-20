@@ -16,8 +16,8 @@ import static org.junit.Assert.assertTrue;
 
 public class TestGameclass {
     
-    File NonRealFile = new File("NotValid.txt");// creates file object - is not real and never used
-    CardGame rand = new CardGame(4,NonRealFile);// recreates cardgame to ensure no interference with other tests
+    static File NonRealFile = new File("NotValid.txt");// creates file object - is not real and never used
+    static CardGame rand = new CardGame(4,NonRealFile);// recreates cardgame to ensure no interference with other tests
     static String ResourcesLoc = "/src/test/resources";
     static int PlayerCount =4;
     static String [] PlayerFileArray ;
@@ -65,6 +65,8 @@ public class TestGameclass {
             System.setOut(new PrintStream(out));
 
             // Execute the actual main method
+            Player test47 =(new Player(4,rand));
+            System.out.println(test47.IsWinnerFound()+"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
             CardGame.main(new String[]{});
 
         } finally {
